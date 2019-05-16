@@ -30,4 +30,10 @@ module.exports = name => [
     name: 'authorGithubHandle',
     message: 'Author Github Handle',
   },
+  {
+    type: 'input',
+    name: 'repoPath',
+    message: 'Repo Path',
+    default: hash => `${hash.authorGithubHandle}/${hash.packageName}`,
+  },
 ];
