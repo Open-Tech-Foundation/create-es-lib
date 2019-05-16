@@ -29,5 +29,13 @@
   "bugs": {
     "url": "https://github.com/open-tech-world/create-node-lib/issues"
   },
-  "homepage": "https://github.com/open-tech-world/create-node-lib#readme"
+  "homepage": "https://github.com/open-tech-world/create-node-lib#readme",
+  "dependencies": {
+    "chalk": "^2.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2"
+  }
 }
