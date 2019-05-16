@@ -9,6 +9,9 @@
   "engines": {
     "node": ">=10"
   },
+  "bin": {
+    "create-node-lib": "cli.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/open-tech-world/create-node-lib.git"
