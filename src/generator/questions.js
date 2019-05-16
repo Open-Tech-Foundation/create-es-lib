@@ -1,5 +1,12 @@
 module.exports = name => [
   {
+    type: 'list',
+    name: 'libType',
+    message: 'Libary Type',
+    choices: ['CLI', 'Module'],
+    default: 'CLI',
+  },
+  {
     type: 'input',
     name: 'packageName',
     message: 'Package Name',
