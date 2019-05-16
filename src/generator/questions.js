@@ -43,4 +43,18 @@ module.exports = name => [
     message: 'Repo Path',
     default: hash => `${hash.authorGithubHandle}/${hash.packageName}`,
   },
+  {
+    type: 'list',
+    name: 'license',
+    message: 'License',
+    choices: ['MIT', 'Other'],
+    default: 'MIT',
+  },
+  {
+    type: 'list',
+    name: 'packageManager',
+    message: 'Package Manager',
+    choices: ['npm', 'yarn'],
+    default: 'npm',
+  },
 ];
