@@ -23,7 +23,7 @@
   ],
   "author": {
     "name": "{{authorFullName}}",
-    "email": "{{authorEmail}}>",
+    "email": "{{authorEmail}}",
     "url": "https://{{authorWebsite}}"
   },
   "license": "{{license}}",
