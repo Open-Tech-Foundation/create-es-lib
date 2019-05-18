@@ -24,7 +24,11 @@
     "scaffold",
     "cli"
   ],
-  "author": "Thanga Ganapathy <ganapathy888@gmail.com>",
+  "author": {
+    "name": "Thanga Ganapathy",
+    "email": "ganapathy888@gmail.com",
+    "url": "https://ganapathy888.github.io"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/open-tech-world/create-node-lib/issues"
