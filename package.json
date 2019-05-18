@@ -61,7 +61,7 @@
       "eslint --fix"
     ],
     "*.{js,css,json,md}": [
-      "prettier --write",
+      "prettier --ignore-path .prettierignore --config .prettierrc.js --write",
       "git add"
     ]
   }
