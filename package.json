@@ -33,6 +33,7 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "globby": "^9.2.0",
+    "handlebars": "^4.1.2",
     "inquirer": "^6.3.1",
     "log-symbols": "^3.0.0"
   },
