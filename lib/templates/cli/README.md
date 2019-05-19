@@ -1,17 +1,17 @@
-# {{packageName}}
+# {{pkgName}}
 
-> {{packageDesc}}
+> {{pkgDesc}}
 
 ## Install
 
 ```bash
-$ npm install -g {{packageName}}
+$ npm install -g {{pkgName}}
 ```
 
 ## Usage
 
 ```bash
-$ npx {{packageName}} --help
+$ npx {{pkgName}} --help
 ```
 
 ## License
