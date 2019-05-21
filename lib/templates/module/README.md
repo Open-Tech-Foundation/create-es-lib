@@ -5,13 +5,17 @@
 ## Install
 
 ```bash
-$ npm install -g {{pkgName}}
+$ npm install {{pkgName}}
 ```
 
 ## Usage
 
-```bash
-$ npx {{pkgName}} --help
+```js
+const {{camelLibName}} = require('{{libName}}')
+
+// or
+
+import {{camelLibName}} from '{{libName}}'
 ```
 
 ## License
