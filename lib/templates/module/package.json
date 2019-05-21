@@ -2,8 +2,8 @@
   "name": "{{pkgName}}",
   "version": "0.0.0",
   "description": "{{pkgDesc}}",
-  "main": "{{libName}}.cjs.js",
-  "module": "{{libName}}.esm.js",
+  "main": "{{pkgName}}.cjs.js",
+  "module": "{{pkgName}}.esm.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c",

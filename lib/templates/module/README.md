@@ -5,17 +5,17 @@
 ## Install
 
 ```bash
-$ npm install {{pkgName}}
+$ {{pkgManager.cmd}} {{#ifEq pkgManager.cmd 'npm'}}install{{else}}add{{/ifEq}} {{pkgName}}
 ```
 
 ## Usage
 
 ```js
-const {{camelLibName}} = require('{{libName}}')
+const {{camelLibName}} = require('{{pkgName}}')
 
 // or
 
-import {{camelLibName}} from '{{libName}}'
+import {{camelLibName}} from '{{pkgName}}'
 ```
 
 ## License

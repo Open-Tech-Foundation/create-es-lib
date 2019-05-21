@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/open-tech-world/create-node-lib#readme",
   "dependencies": {
+    "camelcase": "^5.3.1",
     "chalk": "^2.4.2",
     "email-regex": "^3.0.0",
     "globby": "^9.2.0",
