@@ -5,13 +5,13 @@
 ## Install
 
 ```bash
-$ npm install -g {{pkgName}}
+$ {{pkgManager.cmd}} install -g {{pkgName}}
 ```
 
 ## Usage
 
 ```bash
-$ npx {{pkgName}} --help
+$ {{pkgManager.exe}} {{pkgName}} --help
 ```
 
 ## License
