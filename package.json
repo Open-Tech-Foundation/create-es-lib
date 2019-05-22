@@ -12,6 +12,10 @@
   "bin": {
     "create-node-lib": "cli.js"
   },
+  "files": [
+    "cli.js",
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/open-tech-world/create-node-lib.git"
