@@ -9,7 +9,9 @@ describe('CLI commands', () => {
   });
 
   test('the invalid command fails with an error', () => {
-    expect(() => execFileSync('./cli.js', ['-f'])).toThrow();
+    expect(() =>
+      execFileSync('./cli.js', ['-f'], { stdio: 'ignore' }),
+    ).toThrow();
   });
 
   test('the empty command should not fail', () => {
