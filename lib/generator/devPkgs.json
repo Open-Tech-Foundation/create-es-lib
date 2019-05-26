@@ -1,0 +1,5 @@
+{
+  "common": ["eslint", "prettier"],
+  "cli": [],
+  "module": ["rollup", "rollup-plugin-filesize"]
+}
