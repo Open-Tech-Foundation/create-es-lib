@@ -2,6 +2,7 @@ const path = require('path');
 const { existsSync } = require('fs');
 const { tmpdir } = require('os');
 const globby = require('globby');
+const rmfr = require('rmfr');
 
 const createLib = require('../lib/generator/createLib');
 
@@ -32,6 +33,7 @@ describe('When valid params passed', () => {
     const files = await globby([projectPath], { dot: true });
     expect(files.length).toBeGreaterThan(0);
     expect(existsSync(path.join(projectPath, 'LICENSE'))).toBeFalsy();
+    await rmfr(projectPath);
   });
 
   it('creates a module lib with MIT license', async () => {
@@ -46,5 +48,6 @@ describe('When valid params passed', () => {
     await createLib(projectPath, params);
     expect(existsSync(projectPath)).toBeTruthy();
     expect(existsSync(path.join(projectPath, 'LICENSE'))).toBeTruthy();
+    await rmfr(projectPath);
   });
 });
