@@ -11,11 +11,11 @@
 - Format using prettier
 - Git init
 - Choose open source license
-- Easy to get started
 
 ## Requirements
 
 - Node.js >= v10 LTS
+- Latest Npm or Yarn
 
 ## Usage
 
