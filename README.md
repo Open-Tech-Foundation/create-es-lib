@@ -20,12 +20,10 @@
 ## Usage
 
 ```bash
+# With npm
 $ npx @open-tech-world/create-node-lib your-lib-name
-```
 
-Or
-
-```bash
+# With yarn
 $ yarn create @open-tech-world/node-lib your-lib-name
 ```
 
