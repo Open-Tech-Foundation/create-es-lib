@@ -57,6 +57,7 @@
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jest": "^22.6.4",
+    "eslint-plugin-prettier": "^3.1.0",
     "husky": "^2.3.0",
     "jest": "^24.8.0",
     "lint-staged": "^8.1.7",
@@ -69,9 +70,10 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix"
+      "eslint --fix",
+      "git add"
     ],
-    "*.{js,css,json,md}": [
+    "*.{css,json,md}": [
       "prettier --ignore-path .prettierignore --config .prettierrc.js --write",
       "git add"
     ]
