@@ -4,7 +4,7 @@
 
 ## Features
 
-- Creates CLI or module library
+- Creates CLI or Module Library
 - Bundles cjs and es module formats using [rollup](https://github.com/rollup/rollup)
 - Use your preferred package manager
 - Custom eslint configuration
