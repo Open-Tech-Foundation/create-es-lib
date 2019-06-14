@@ -4,8 +4,8 @@ const globby = require('globby');
 const { tmpdir } = require('os');
 const rmfr = require('rmfr');
 
-const createLib = require('../lib/generator/createLib');
-const devPkgs = require('../lib/generator/devPkgs');
+const createLib = require('../lib/createLib');
+const devPkgs = require('../lib/createLib/devPkgs');
 
 describe('When invalid params passed', () => {
   test('the empty params fails with an error', async () => {
