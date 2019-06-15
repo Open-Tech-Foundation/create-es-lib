@@ -5,6 +5,7 @@ const { tmpdir } = require('os');
 const rmfr = require('rmfr');
 
 const createLib = require('../lib/createLib/compileToCopyFiles');
+const installDevDeps = require('../lib/installDevDeps');
 const devPkgs = require('../lib/installDevDeps/devPkgs');
 
 const cliProjectPath = path.join(tmpdir(), 'cool-lib-cli');
@@ -75,7 +76,7 @@ describe('When valid params passed', () => {
       license: '',
     };
     await createLib(cliProjectPath, params);
-
+    await installDevDeps(cliProjectPath, params.libType, params.pkgManager);
     const rawdata = readFileSync(path.join(cliProjectPath, 'package.json'));
     const packageData = JSON.parse(rawdata);
     expect(Object.keys(packageData.devDependencies)).toEqual([
@@ -90,8 +91,10 @@ describe('When valid params passed', () => {
       libType: 'module',
       pkgName: 'cool-lib-mod',
       pkgManager: { cmd: 'yarn', exe: 'yarn' },
+      license: '',
     };
     await createLib(modProjectPath, params);
+    await installDevDeps(modProjectPath, params.libType, params.pkgManager);
 
     const rawdata = readFileSync(path.join(modProjectPath, 'package.json'));
     const packageData = JSON.parse(rawdata);
