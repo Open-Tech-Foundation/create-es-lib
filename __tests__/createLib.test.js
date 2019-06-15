@@ -2,13 +2,16 @@ const path = require('path');
 const { existsSync, readFileSync } = require('fs');
 const globby = require('globby');
 const rmfr = require('rmfr');
+const execa = require('execa');
+const { tmpdir } = require('os');
 
 const createLib = require('../lib/createLib/compileToCopyFiles');
 const installDevDeps = require('../lib/installDevDeps');
+const commitToGit = require('../lib/commitToGit');
 const devPkgs = require('../lib/installDevDeps/devPkgs');
 
-const cliProjectPath = 'test-lib-cli';
-const modProjectPath = 'test-lib-mod';
+const cliProjectPath = path.join(tmpdir(), 'test-lib-cli');
+const modProjectPath = path.join(tmpdir(), 'test-lib-mod');
 
 async function cleanUp() {
   await rmfr(cliProjectPath);
@@ -101,4 +104,21 @@ describe('When valid params passed', () => {
       ...devPkgs.module,
     ]);
   }, 15000);
+
+  test('git is initialized', async () => {
+    const params = {
+      libType: 'module',
+      pkgName: 'cool-lib-mod',
+      pkgManager: { cmd: 'yarn', exe: 'yarn' },
+      license: '',
+    };
+    await createLib(modProjectPath, params);
+    await commitToGit(params, modProjectPath);
+    expect(existsSync(path.join(modProjectPath, '.gitignore'))).toBeTruthy();
+    const { code } = await execa('git rev-parse --git-dir', {
+      shell: true,
+      cwd: modProjectPath,
+    });
+    expect(code).toBe(0);
+  });
 });
