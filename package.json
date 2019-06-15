@@ -1,6 +1,6 @@
 {
   "name": "@open-tech-world/create-node-lib",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Node.js CLI tool for creating modern node libraries.",
   "main": "cli.js",
   "scripts": {
