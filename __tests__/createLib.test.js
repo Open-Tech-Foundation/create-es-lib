@@ -1,15 +1,14 @@
 const path = require('path');
 const { existsSync, readFileSync } = require('fs');
 const globby = require('globby');
-const { tmpdir } = require('os');
 const rmfr = require('rmfr');
 
 const createLib = require('../lib/createLib/compileToCopyFiles');
 const installDevDeps = require('../lib/installDevDeps');
 const devPkgs = require('../lib/installDevDeps/devPkgs');
 
-const cliProjectPath = path.join(tmpdir(), 'cool-lib-cli');
-const modProjectPath = path.join(tmpdir(), 'cool-lib-mod');
+const cliProjectPath = 'test-lib-cli';
+const modProjectPath = 'test-lib-mod';
 
 async function cleanUp() {
   await rmfr(cliProjectPath);
@@ -31,10 +30,6 @@ describe('When invalid params passed', () => {
 });
 
 describe('When valid params passed', () => {
-  beforeEach(() => {
-    return cleanUp();
-  });
-
   afterEach(() => {
     return cleanUp();
   });
