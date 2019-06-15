@@ -35,15 +35,18 @@ describe('When valid params passed', () => {
   });
 
   it('creates a cli lib with no license', async () => {
-    expect.assertions(3);
+    expect.assertions(4);
     const params = {
       libType: 'CLI',
       pkgName: 'cool-lib-cli',
       pkgManager: { cmd: 'npm', exe: 'npx' },
       license: '',
     };
-    await createLib(cliProjectPath, params);
+    await createLib(cliProjectPath, params, ['--verbose']);
     expect(existsSync(cliProjectPath)).toBeTruthy();
+    expect(
+      existsSync(path.join(cliProjectPath, 'lib', 'index.js')),
+    ).toBeTruthy();
     const files = await globby([cliProjectPath], { dot: true });
     expect(files.length).toBeGreaterThan(0);
     expect(existsSync(path.join(cliProjectPath, 'LICENSE'))).toBeFalsy();
