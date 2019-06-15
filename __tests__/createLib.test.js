@@ -72,6 +72,7 @@ describe('When valid params passed', () => {
       libType: 'CLI',
       pkgName: 'cool-lib-cli',
       pkgManager: { cmd: 'npm', exe: 'npx' },
+      license: '',
     };
     await createLib(cliProjectPath, params);
 
