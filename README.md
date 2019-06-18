@@ -7,7 +7,7 @@
 - Creates CLI or Module Library
 - Bundles cjs and es module formats using [rollup](https://github.com/rollup/rollup)
 - Use your preferred package manager
-- Custom eslint configuration
+- Eslint configuration
 - Format using prettier
 - Git init
 - Choose open source license
