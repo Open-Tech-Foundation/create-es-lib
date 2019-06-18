@@ -1,5 +1,11 @@
 {
   "common": ["eslint", "prettier"],
   "cli": [],
-  "module": ["rollup", "rollup-plugin-filesize"]
+  "module": [
+    "rollup",
+    "rollup-plugin-filesize",
+    "rollup-plugin-node-resolve",
+    "rollup-plugin-commonjs",
+    "rollup-plugin-eslint"
+  ]
 }

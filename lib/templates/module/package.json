@@ -29,5 +29,6 @@
   },
   "homepage": "https://github.com/{{repoPath}}#readme",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "files": ["dist"]
 }
