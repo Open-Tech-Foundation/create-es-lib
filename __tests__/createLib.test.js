@@ -80,7 +80,7 @@ describe('When valid params passed', () => {
     await installDevDeps(cliProjectPath, params.libType, params.pkgManager);
     const rawdata = readFileSync(path.join(cliProjectPath, 'package.json'));
     const packageData = JSON.parse(rawdata);
-    expect(Object.keys(packageData.devDependencies)).toEqual([
+    expect(Object.keys(packageData.devDependencies)).toIncludeSameMembers([
       ...devPkgs.common,
       ...devPkgs.cli,
     ]);
@@ -99,7 +99,7 @@ describe('When valid params passed', () => {
 
     const rawdata = readFileSync(path.join(modProjectPath, 'package.json'));
     const packageData = JSON.parse(rawdata);
-    expect(Object.keys(packageData.devDependencies)).toEqual([
+    expect(Object.keys(packageData.devDependencies)).toIncludeSameMembers([
       ...devPkgs.common,
       ...devPkgs.module,
     ]);

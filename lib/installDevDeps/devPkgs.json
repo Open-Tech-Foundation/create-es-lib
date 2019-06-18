@@ -1,11 +1,13 @@
 {
   "common": ["eslint", "prettier"],
-  "cli": [],
+  "cli": ["eslint-config-prettier", "eslint-plugin-prettier"],
   "module": [
     "rollup",
     "rollup-plugin-filesize",
     "rollup-plugin-node-resolve",
     "rollup-plugin-commonjs",
-    "rollup-plugin-eslint"
+    "rollup-plugin-eslint",
+    "eslint-config-prettier",
+    "eslint-plugin-prettier"
   ]
 }
