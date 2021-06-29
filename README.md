@@ -1,6 +1,6 @@
 # create-node-lib
 
-> CLI tool for creating modern Node.js libraries.
+> Node.js CLI tool for creating modern ES libraries.
 
 ## Features
 
@@ -21,15 +21,15 @@
 
 ```bash
 # With npm
-$ npx @open-tech-world/create-node-lib your-lib-name
+$ npx @open-tech-world/create-es-lib your-lib-name
 
 # With yarn
-$ yarn create @open-tech-world/node-lib your-lib-name
+$ yarn create @open-tech-world/es-lib your-lib-name
 ```
 
 ## Getting Started
 
-After successful library creation, you can follow the on-screen instructions to get started.
+Post creating a lib, follow the on-screen instructions to get started.
 
 ## License
 
