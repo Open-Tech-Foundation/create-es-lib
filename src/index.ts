@@ -1,1 +1,3 @@
-console.log('Hello typescript');
+import Create from './Create';
+
+export default Create;

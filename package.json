@@ -5,13 +5,14 @@
   "main": "cli.js",
   "scripts": {
     "test": "jest --watch",
-    "build": "tsc"
+    "build": "tsc",
+    "build:w": "tsc --watch"
   },
   "engines": {
     "node": ">=10"
   },
   "bin": {
-    "create-node-lib": "cli.js"
+    "create-es-lib": "cli.js"
   },
   "files": [
     "cli.js",
@@ -52,7 +53,8 @@
     "p-each-series": "^2.1.0",
     "p-map": "^2.1.0",
     "prettier": "^1.18.2",
-    "validate-npm-package-name": "^3.0.0"
+    "validate-npm-package-name": "^3.0.0",
+    "yargs": "^17.0.1"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

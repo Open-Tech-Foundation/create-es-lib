@@ -1,3 +1,5 @@
 #!/usr/bin/env node
 
-require('./lib/')();
+const createESLib = require('./lib/').default;
+
+createESLib();
