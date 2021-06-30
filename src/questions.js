@@ -3,13 +3,6 @@ const emailRegex = require('email-regex');
 
 module.exports = libName => [
   {
-    type: 'list',
-    name: 'libType',
-    message: 'Library Type',
-    choices: ['CLI', 'Module'],
-    default: 'CLI',
-  },
-  {
     type: 'input',
     name: 'pkgName',
     message: 'Package Name',
@@ -65,7 +58,10 @@ module.exports = libName => [
     type: 'list',
     name: 'license',
     message: 'License',
-    choices: [{ name: 'MIT', value: 'MIT' }, { name: 'None', value: '' }],
+    choices: [
+      { name: 'MIT', value: 'MIT' },
+      { name: 'None', value: '' },
+    ],
     default: 'MIT',
   },
   {
