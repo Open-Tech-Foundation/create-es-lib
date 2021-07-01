@@ -69,3 +69,4 @@ typings/
 .pnp.*
 
 built
+lib
