@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import yargs from 'yargs';
 import inquirer from 'inquirer';
 import createNodeJsModule from './createNodeJsModule';
+import IBasicConfig from './IBasicConfig';
 
 async function getLibType() {
   const answer = await inquirer.prompt([
@@ -49,8 +50,8 @@ async function getTypeScriptSupport() {
   return answer.ts;
 }
 
-function createLib(libName: string, libType: string) {
-  switch (libType) {
+function createLib(basicConfig: IBasicConfig) {
+  switch (basicConfig.libType) {
     case 'Browser':
       console.log('Not implemented yet');
       break;
@@ -58,30 +59,33 @@ function createLib(libName: string, libType: string) {
       console.log('Not implemented yet');
       break;
     case 'Node.js Module':
-      createNodeJsModule(libName);
+      createNodeJsModule(basicConfig);
       break;
   }
+}
+
+async function run(libName: string | unknown) {
+  const basicConfig: Partial<IBasicConfig> = {};
+  if (libName) {
+    basicConfig.libName = libName as string;
+  } else {
+    basicConfig.libName = await getLibName();
+  }
+
+  basicConfig.libType = await getLibType();
+  basicConfig.ts = await getTypeScriptSupport();
+  createLib(basicConfig as IBasicConfig);
 }
 
 export default function Create() {
   const header = chalk`\n{bold.rgb(255, 136, 0) @open-tech-world/create-es-lib}\n`;
   console.log(header);
 
-  const argv = yargs
+  yargs
     .scriptName('create-es-lib')
     .usage('$0 <your-lib-name>')
-    .command('$0 [libName]', '', {}, async argv => {
-      const basicConfig: Record<string, unknown> = {};
-
-      if (argv.libName) {
-        basicConfig.libName = argv.libName;
-      } else {
-        basicConfig.libName = await getLibName();
-      }
-
-      basicConfig.libType = await getLibType();
-      basicConfig.ts = await getTypeScriptSupport();
-      console.log(basicConfig);
+    .command('$0 [libName]', '', {}, argv => {
+      run(argv.libName);
     })
     .alias('h', 'help')
     .alias('v', 'version')
