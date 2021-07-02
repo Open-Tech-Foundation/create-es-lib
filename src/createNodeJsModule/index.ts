@@ -5,7 +5,9 @@ import ora from 'ora';
 import IBasicConfig from '../IBasicConfig';
 import generate from './generate';
 
-export default async function createNodeJsModule(basicConfig: IBasicConfig) {
+export default async function createNodeJsModule(
+  basicConfig: IBasicConfig
+): Promise<void> {
   const templatePath = Path.join(__dirname, 'templates', 'nodeJsModule');
   const copySpinner = ora('Creating lib files from templates').start();
   try {

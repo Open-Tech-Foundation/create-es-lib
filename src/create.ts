@@ -25,7 +25,7 @@ async function getLibName() {
       name: 'libName',
       message: 'Enter library name',
       default: '',
-      validate: input => {
+      validate: (input) => {
         if (!input) {
           return 'Please enter a valid library name';
         }
@@ -77,14 +77,14 @@ async function run(libName: string | unknown) {
   createLib(basicConfig as IBasicConfig);
 }
 
-export default function Create() {
+export default function Create(): void {
   const header = chalk`\n{bold.rgb(255, 136, 0) @open-tech-world/create-es-lib}\n`;
   console.log(header);
 
   yargs
     .scriptName('create-es-lib')
     .usage('$0 <your-lib-name>')
-    .command('$0 [libName]', '', {}, argv => {
+    .command('$0 [libName]', '', {}, (argv) => {
       run(argv.libName);
     })
     .alias('h', 'help')

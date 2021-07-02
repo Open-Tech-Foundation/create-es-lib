@@ -26,5 +26,6 @@ export default {
     'fs/promises',
     'ejs',
     'ora',
+    'camelcase',
   ],
 };

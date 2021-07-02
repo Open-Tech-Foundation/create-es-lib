@@ -8,16 +8,16 @@ import camelcase from 'camelcase';
 
 export default async function generate(
   templatePath: string,
-  basicConfig: IBasicConfig,
-) {
+  basicConfig: IBasicConfig
+): Promise<void> {
   const filePaths = await globby([templatePath], { dot: true });
-  for await (let f of filePaths) {
+  for await (const f of filePaths) {
     const buffer = await readFile(f);
     const fileExt = Path.extname(f);
     let newFilePath = Path.join(
       process.cwd(),
       basicConfig.libName,
-      f.replace(templatePath, ''),
+      f.replace(templatePath, '')
     );
     let data;
 
@@ -28,7 +28,7 @@ export default async function generate(
       });
       newFilePath = newFilePath.replace(
         fileExt,
-        basicConfig.ts ? '.ts' : '.js',
+        basicConfig.ts ? '.ts' : '.js'
       );
     } else {
       data = buffer;
