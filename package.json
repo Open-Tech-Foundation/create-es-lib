@@ -5,7 +5,7 @@
   "main": "cli.js",
   "scripts": {
     "test": "jest --watch",
-    "build": "tsc",
+    "build": "rollup -c",
     "build:w": "tsc --watch"
   },
   "engines": {
@@ -56,6 +56,8 @@
     "yargs": "^17.0.1"
   },
   "devDependencies": {
+    "@open-tech-world/rollup-plugin-clean": "^0.7.1",
+    "@rollup/plugin-typescript": "^8.2.1",
     "@types/ejs": "^3.0.6",
     "@types/inquirer": "^7.3.2",
     "@types/yargs": "^17.0.0",
@@ -68,6 +70,7 @@
     "jest": "^24.8.0",
     "jest-extended": "^0.11.1",
     "rmfr": "^2.0.0",
+    "rollup": "^2.52.7",
     "typescript": "^4.3.5"
   }
 }

@@ -4,7 +4,7 @@ import { mkdir, readFile, writeFile } from 'fs/promises';
 import ejs from 'ejs';
 import ora from 'ora';
 
-import IBasicConfig from './IBasicConfig';
+import IBasicConfig from '../IBasicConfig';
 
 export default async function createNodeJsModule(basicConfig: IBasicConfig) {
   const templatePath = Path.join(__dirname, 'templates', 'nodeJsModule');
@@ -27,5 +27,6 @@ export default async function createNodeJsModule(basicConfig: IBasicConfig) {
     copySpinner.succeed('Library files created from templates');
   } catch (error) {
     copySpinner.fail(error.message);
+    process.exit(1);
   }
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-const createESLib = require('./lib/').default;
+const createESLib = require('./lib/createESLib.cjs');
 
 createESLib();
