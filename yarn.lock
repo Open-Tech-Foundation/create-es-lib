@@ -496,7 +496,9 @@ __metadata:
     "@open-tech-world/rollup-plugin-clean": ^0.7.1
     "@rollup/plugin-typescript": ^8.2.1
     "@types/ejs": ^3.0.6
+    "@types/globby": ^9.1.0
     "@types/inquirer": ^7.3.2
+    "@types/ora": ^3.2.0
     "@types/yargs": ^17.0.0
     camelcase: ^5.3.1
     chalk: ^4.1.1
@@ -649,6 +651,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/globby@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "@types/globby@npm:9.1.0"
+  dependencies:
+    globby: "*"
+  checksum: 9dd2abb72f7fe61a84e322f7d5a25640862ccd776a38f770b58e4a07040d9d8123ddfd2f28672bda6d137b66ec26ac41d9ec739bf41cc85a3e662218609cd363
+  languageName: node
+  linkType: hard
+
 "@types/inquirer@npm:^7.3.2":
   version: 7.3.2
   resolution: "@types/inquirer@npm:7.3.2"
@@ -710,6 +721,15 @@ __metadata:
   version: 15.12.5
   resolution: "@types/node@npm:15.12.5"
   checksum: 42485de7a0b7277ddaae25b36ab4174fc8f23e8a5de9ccaedd002ecec17135c48227a5e09088d181c2bc34fe6b2064feb4a468954372076fd8addac2f72dad7e
+  languageName: node
+  linkType: hard
+
+"@types/ora@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "@types/ora@npm:3.2.0"
+  dependencies:
+    ora: "*"
+  checksum: 7647529dc189a0feea41b325e78e9c26a1c8b5c7315056e74e47b4ca0f54fdbf0b1ca3e18fcbdeea6196777bfa1bafc0ba9252cbcaddc26d83bdd99bde2a9fd8
   languageName: node
   linkType: hard
 
@@ -2840,6 +2860,20 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"globby@npm:*, globby@npm:^11.0.1, globby@npm:^11.0.3, globby@npm:^11.0.4":
+  version: 11.0.4
+  resolution: "globby@npm:11.0.4"
+  dependencies:
+    array-union: ^2.1.0
+    dir-glob: ^3.0.1
+    fast-glob: ^3.1.1
+    ignore: ^5.1.4
+    merge2: ^1.3.0
+    slash: ^3.0.0
+  checksum: 9f365b35b835c0235880e272fa2a2f5d9d78428e09af8dfc67536f1047953e7b0c66aab9bb6d41e6c0f4c3ec75a22840d9acb892f102daecaadd338b2c763219
+  languageName: node
+  linkType: hard
+
 "globby@npm:10.0.1":
   version: 10.0.1
   resolution: "globby@npm:10.0.1"
@@ -2853,20 +2887,6 @@ fsevents@~2.3.2:
     merge2: ^1.2.3
     slash: ^3.0.0
   checksum: f17a47eae09c3d1abaddbbb4e0a7e664dce6d24a9ae54c1d5a5b6082e7353eef232ec1059a2f8de7e33f71ef1d93fecda950136209d5f88881cdd0687b205fa3
-  languageName: node
-  linkType: hard
-
-"globby@npm:^11.0.1, globby@npm:^11.0.3, globby@npm:^11.0.4":
-  version: 11.0.4
-  resolution: "globby@npm:11.0.4"
-  dependencies:
-    array-union: ^2.1.0
-    dir-glob: ^3.0.1
-    fast-glob: ^3.1.1
-    ignore: ^5.1.4
-    merge2: ^1.3.0
-    slash: ^3.0.0
-  checksum: 9f365b35b835c0235880e272fa2a2f5d9d78428e09af8dfc67536f1047953e7b0c66aab9bb6d41e6c0f4c3ec75a22840d9acb892f102daecaadd338b2c763219
   languageName: node
   linkType: hard
 
@@ -5049,7 +5069,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"ora@npm:^5.3.0, ora@npm:^5.4.1":
+"ora@npm:*, ora@npm:^5.3.0, ora@npm:^5.4.1":
   version: 5.4.1
   resolution: "ora@npm:5.4.1"
   dependencies:
