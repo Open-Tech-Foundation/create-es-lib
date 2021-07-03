@@ -3,13 +3,13 @@ import Path from 'path';
 import { mkdir, readFile, writeFile } from 'fs/promises';
 import camelcase from 'camelcase';
 
-import IBasicConfig from '../IBasicConfig';
+import IConfig from '../IConfig';
 import compile from '../compile';
 import prettify from '../utils/prettify';
 
 export default async function generate(
   templatePath: string,
-  basicConfig: IBasicConfig
+  config: IConfig
 ): Promise<void> {
   const filePaths = await globby([templatePath], { dot: true });
   for await (const f of filePaths) {
@@ -17,22 +17,23 @@ export default async function generate(
     const fileExt = Path.extname(f);
     let newFilePath = Path.join(
       process.cwd(),
-      basicConfig.libName,
+      config.libName,
       f.replace(templatePath, '')
     );
     let data;
 
     if (fileExt === '.ejs') {
       data = compile(buffer, {
-        libName: camelcase(basicConfig.libName),
-        ts: basicConfig.ts,
+        libName: camelcase(config.libName),
+        ts: config.ts,
+        pkgName: config.libName,
       });
       newFilePath = newFilePath.replace(fileExt, '');
     } else {
       data = buffer;
     }
 
-    if (Path.extname(newFilePath) === '.js' && basicConfig.ts) {
+    if (Path.extname(newFilePath) === '.js' && config.ts) {
       newFilePath = newFilePath.replace('.js', '.ts');
     }
 

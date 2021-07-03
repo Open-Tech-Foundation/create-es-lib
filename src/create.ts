@@ -1,8 +1,9 @@
 import chalk from 'chalk';
 import yargs from 'yargs';
 import inquirer from 'inquirer';
+
 import createNodeJsModule from './createNodeJsModule';
-import IBasicConfig from './IBasicConfig';
+import IConfig from './IConfig';
 
 async function getLibType() {
   const answer = await inquirer.prompt([
@@ -50,8 +51,28 @@ async function getTypeScriptSupport() {
   return answer.ts;
 }
 
-function createLib(basicConfig: IBasicConfig) {
-  switch (basicConfig.libType) {
+async function getPkgManager() {
+  const answer = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'pkgManager',
+      message: 'Select a package manager',
+      choices: [
+        { name: 'Npm', value: 'npm' },
+        { name: 'Yarn (Classic)', value: 'yarn-v1' },
+        { name: 'Yarn Berry (Node Modules)', value: 'yarn-v2-nm' },
+        { name: 'Yarn Berry (PnP)', value: 'yarn-v2-pnp' },
+        { name: 'pnpm', value: 'pnpm', disabled: true },
+      ],
+      default: 'npm',
+    },
+  ]);
+
+  return answer.pkgManager;
+}
+
+function createLib(config: IConfig) {
+  switch (config.libType) {
     case 'Browser':
       console.log('Not implemented yet');
       break;
@@ -59,22 +80,23 @@ function createLib(basicConfig: IBasicConfig) {
       console.log('Not implemented yet');
       break;
     case 'Node.js Module':
-      createNodeJsModule(basicConfig);
+      createNodeJsModule(config);
       break;
   }
 }
 
 async function run(libName: string | unknown) {
-  const basicConfig: Partial<IBasicConfig> = {};
+  const config: Partial<IConfig> = {};
   if (libName) {
-    basicConfig.libName = libName as string;
+    config.libName = libName as string;
   } else {
-    basicConfig.libName = await getLibName();
+    config.libName = await getLibName();
   }
 
-  basicConfig.libType = await getLibType();
-  basicConfig.ts = await getTypeScriptSupport();
-  createLib(basicConfig as IBasicConfig);
+  config.libType = await getLibType();
+  config.ts = await getTypeScriptSupport();
+  config.pkgManager = await getPkgManager();
+  createLib(config as IConfig);
 }
 
 export default function Create(): void {
