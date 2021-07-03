@@ -46,7 +46,6 @@
     "execa": "^1.0.0",
     "globby": "^11.0.4",
     "inquirer": "^8.1.1",
-    "node-emoji": "^1.10.0",
     "ora": "^5.4.1",
     "p-each-series": "^2.1.0",
     "p-map": "^2.1.0",
