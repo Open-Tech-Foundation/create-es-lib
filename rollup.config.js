@@ -27,5 +27,6 @@ export default {
     'ejs',
     'ora',
     'camelcase',
+    'prettier',
   ],
 };

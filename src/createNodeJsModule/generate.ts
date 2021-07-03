@@ -1,10 +1,11 @@
 import globby from 'globby';
 import Path from 'path';
 import { mkdir, readFile, writeFile } from 'fs/promises';
+import camelcase from 'camelcase';
 
 import IBasicConfig from '../IBasicConfig';
 import compile from '../compile';
-import camelcase from 'camelcase';
+import prettify from '../utils/prettify';
 
 export default async function generate(
   templatePath: string,
@@ -26,14 +27,16 @@ export default async function generate(
         libName: camelcase(basicConfig.libName),
         ts: basicConfig.ts,
       });
-      newFilePath = newFilePath.replace(
-        fileExt,
-        basicConfig.ts ? '.ts' : '.js'
-      );
+      newFilePath = newFilePath.replace(fileExt, '');
     } else {
       data = buffer;
     }
 
+    if (Path.extname(newFilePath) === '.js' && basicConfig.ts) {
+      newFilePath = newFilePath.replace('.js', '.ts');
+    }
+
+    data = prettify(data.toString(), newFilePath);
     await mkdir(Path.dirname(newFilePath), { recursive: true });
     await writeFile(newFilePath, data);
   }

@@ -45,14 +45,12 @@
     "email-regex": "^3.0.0",
     "execa": "^1.0.0",
     "globby": "^11.0.4",
-    "handlebars": "^4.7.7",
     "inquirer": "^8.1.1",
     "node-emoji": "^1.10.0",
     "ora": "^5.4.1",
     "p-each-series": "^2.1.0",
     "p-map": "^2.1.0",
     "prettier": "^2.3.2",
-    "validate-npm-package-name": "^3.0.0",
     "yargs": "^17.0.1"
   },
   "devDependencies": {
@@ -62,6 +60,7 @@
     "@types/globby": "^9.1.0",
     "@types/inquirer": "^7.3.2",
     "@types/ora": "^3.2.0",
+    "@types/prettier": "^2.3.1",
     "@types/yargs": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
