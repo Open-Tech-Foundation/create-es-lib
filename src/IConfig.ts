@@ -3,4 +3,7 @@ export default interface IConfig {
   libType: string;
   ts: boolean;
   pkgManager: string;
+  pkgScope: string;
+  authorFullName: string;
+  authorEmail: string;
 }

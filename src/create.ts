@@ -1,6 +1,9 @@
 import chalk from 'chalk';
-import yargs from 'yargs';
+// import yargs from 'yargs';
+// import { hideBin } from 'yargs/helpers';
+import { Command } from 'commander';
 import inquirer from 'inquirer';
+import emailRegex from 'email-regex';
 
 import createNodeJsModule from './createNodeJsModule';
 import IConfig from './IConfig';
@@ -59,16 +62,59 @@ async function getPkgManager() {
       message: 'Select a package manager',
       choices: [
         { name: 'Npm', value: 'npm' },
-        { name: 'Yarn (Classic)', value: 'yarn-v1' },
-        { name: 'Yarn Berry (Node Modules)', value: 'yarn-v2-nm' },
-        { name: 'Yarn Berry (PnP)', value: 'yarn-v2-pnp' },
         { name: 'pnpm', value: 'pnpm', disabled: true },
+        { name: 'Yarn - Classic', value: 'yarn-v1' },
+        { name: 'Yarn - Berry (Node Modules)', value: 'yarn-v2-nm' },
+        { name: 'Yarn - Berry (PnP)', value: 'yarn-v2-pnp' },
       ],
       default: 'npm',
     },
   ]);
 
   return answer.pkgManager;
+}
+
+async function getPkgScope() {
+  const answer = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'pkgScope',
+      message: 'Enter package scope (For scoped packages only)',
+      default: '',
+    },
+  ]);
+
+  return answer.pkgScope;
+}
+
+async function getAuthorFullName() {
+  const answer = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'authorFullName',
+      message: 'Enter author fullname',
+      default: '',
+    },
+  ]);
+
+  return answer.authorFullName;
+}
+
+async function getAuthorEmail() {
+  const answer = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'authorEmail',
+      message: 'Enter author email',
+      default: '',
+      validate: (input) => {
+        if (emailRegex({ exact: true }).test(input)) return true;
+        return 'Please enter a valid email address';
+      },
+    },
+  ]);
+
+  return answer.authorFullName;
 }
 
 function createLib(config: IConfig) {
@@ -85,7 +131,7 @@ function createLib(config: IConfig) {
   }
 }
 
-async function run(libName: string | unknown) {
+async function run(libName: string | undefined) {
   const config: Partial<IConfig> = {};
   if (libName) {
     config.libName = libName as string;
@@ -96,6 +142,9 @@ async function run(libName: string | unknown) {
   config.libType = await getLibType();
   config.ts = await getTypeScriptSupport();
   config.pkgManager = await getPkgManager();
+  config.pkgScope = await getPkgScope();
+  config.authorFullName = await getAuthorFullName();
+  config.authorEmail = await getAuthorEmail();
   createLib(config as IConfig);
 }
 
@@ -103,13 +152,13 @@ export default function Create(): void {
   const header = chalk`\n{bold.rgb(255, 136, 0) @open-tech-world/create-es-lib}\n`;
   console.log(header);
 
-  yargs
-    .scriptName('create-es-lib')
-    .usage('$0 <your-lib-name>')
-    .command('$0 [libName]', '', {}, (argv) => {
-      run(argv.libName);
-    })
-    .alias('h', 'help')
-    .alias('v', 'version')
-    .help().argv;
+  const program = new Command();
+  program
+    .description('Create mordern ES library.')
+    .version('')
+    .argument('[libName]')
+    .action((libName) => {
+      run(libName);
+    });
+  program.parse(process.argv);
 }

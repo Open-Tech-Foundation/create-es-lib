@@ -5,8 +5,8 @@ import copy from 'rollup-plugin-copy';
 export default {
   input: 'src/index.ts',
   output: {
-    file: 'lib/createESLib.cjs.js',
-    format: 'cjs',
+    file: 'lib/createESLib.js',
+    format: 'esm',
     exports: 'auto',
   },
   plugins: [
@@ -20,6 +20,7 @@ export default {
   external: [
     'chalk',
     'yargs',
+    'yargs/helpers',
     'inquirer',
     'globby',
     'path',
@@ -28,5 +29,7 @@ export default {
     'ora',
     'camelcase',
     'prettier',
+    'email-regex',
+    'commander',
   ],
 };
