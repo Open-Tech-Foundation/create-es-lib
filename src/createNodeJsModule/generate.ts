@@ -10,17 +10,14 @@ import getPkgName from '../utils/getPkgName';
 
 export default async function generate(
   templatePath: string,
+  destPath: string,
   config: IConfig
 ): Promise<void> {
   const filePaths = await globby([templatePath], { dot: true });
   for await (const f of filePaths) {
     const buffer = await readFile(f);
     const fileExt = Path.extname(f);
-    let newFilePath = Path.join(
-      process.cwd(),
-      config.libName,
-      f.replace(templatePath, '')
-    );
+    let destFilePath = Path.join(destPath, f.replace(templatePath, ''));
     let data;
 
     if (fileExt === '.ejs') {
@@ -29,17 +26,17 @@ export default async function generate(
         libName: camelcase(config.libName),
         pkgName: getPkgName(config.libName, config.pkgScope),
       });
-      newFilePath = newFilePath.replace(fileExt, '');
+      destFilePath = destFilePath.replace(fileExt, '');
     } else {
       data = buffer;
     }
 
-    if (Path.extname(newFilePath) === '.js' && config.ts) {
-      newFilePath = newFilePath.replace('.js', '.ts');
+    if (Path.extname(destFilePath) === '.js' && config.ts) {
+      destFilePath = destFilePath.replace('.js', '.ts');
     }
 
-    data = prettify(data.toString(), newFilePath);
-    await mkdir(Path.dirname(newFilePath), { recursive: true });
-    await writeFile(newFilePath, data);
+    data = prettify(data.toString(), destFilePath);
+    await mkdir(Path.dirname(destFilePath), { recursive: true });
+    await writeFile(destFilePath, data);
   }
 }

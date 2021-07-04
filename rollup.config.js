@@ -32,5 +32,7 @@ export default {
     'email-regex',
     'commander',
     'url',
+    'child_process',
+    'util',
   ],
 };

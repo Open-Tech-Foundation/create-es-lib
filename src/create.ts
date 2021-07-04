@@ -148,7 +148,7 @@ async function run(libName: string | undefined) {
   createLib(config as IConfig);
 }
 
-export default function Create(): void {
+export default function create(): void {
   const header = chalk`\n{bold.rgb(255, 136, 0) @open-tech-world/create-es-lib}\n`;
   console.log(header);
 
