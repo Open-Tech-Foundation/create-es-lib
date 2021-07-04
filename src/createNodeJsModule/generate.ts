@@ -4,7 +4,7 @@ import { mkdir, readFile, writeFile } from 'fs/promises';
 import camelcase from 'camelcase';
 
 import IConfig from '../IConfig';
-import compile from '../compile';
+import compile from '../utils/compile';
 import prettify from '../utils/prettify';
 import getPkgName from '../utils/getPkgName';
 
