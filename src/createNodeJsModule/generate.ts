@@ -25,8 +25,8 @@ export default async function generate(
 
     if (fileExt === '.ejs') {
       data = compile(buffer, {
+        ...config,
         libName: camelcase(config.libName),
-        ts: config.ts,
         pkgName: getPkgName(config.libName, config.pkgScope),
       });
       newFilePath = newFilePath.replace(fileExt, '');

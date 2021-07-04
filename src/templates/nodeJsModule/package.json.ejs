@@ -3,12 +3,16 @@
     "version": "0.1.0",
     "description": "",
     "keywords": [],
-    "author": "<%= authorFullName %><%= authorEmail && ` <${authorEmail}>` %> ",
+    "author": {
+        name: "<%= authorFullName %>",
+        email: "<%= authorEmail %>",
+        url: ""
+    },
     "license": "",
-    "homepage": ""
-    "main": "<%= libName %>.cjs.js",
-    "module": "<%= libName %>.esm.js",
+    "homepage": "",
+    "type": "module",
+    "module": "lib/<%= libName %>.esm.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
-    },
+    }
 }

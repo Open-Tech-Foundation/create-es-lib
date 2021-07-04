@@ -114,7 +114,7 @@ async function getAuthorEmail() {
     },
   ]);
 
-  return answer.authorFullName;
+  return answer.authorEmail;
 }
 
 function createLib(config: IConfig) {

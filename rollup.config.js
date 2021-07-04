@@ -31,5 +31,6 @@ export default {
     'prettier',
     'email-regex',
     'commander',
+    'url',
   ],
 };
