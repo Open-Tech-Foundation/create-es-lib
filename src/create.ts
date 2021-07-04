@@ -154,8 +154,9 @@ export default function Create(): void {
 
   const program = new Command();
   program
-    .description('Create mordern ES library.')
-    .version('')
+    .name('create-es-lib')
+    .description('Create Modern ES Library.')
+    .version('0.1.0', '-v, --version')
     .argument('[libName]')
     .action((libName) => {
       run(libName);

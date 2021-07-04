@@ -6,6 +6,7 @@ import camelcase from 'camelcase';
 import IConfig from '../IConfig';
 import compile from '../compile';
 import prettify from '../utils/prettify';
+import getPkgName from '../utils/getPkgName';
 
 export default async function generate(
   templatePath: string,
@@ -26,7 +27,7 @@ export default async function generate(
       data = compile(buffer, {
         libName: camelcase(config.libName),
         ts: config.ts,
-        pkgName: config.libName,
+        pkgName: getPkgName(config.libName, config.pkgScope),
       });
       newFilePath = newFilePath.replace(fileExt, '');
     } else {
