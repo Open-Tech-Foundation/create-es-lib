@@ -19,10 +19,7 @@ export default {
   ],
   external: [
     'chalk',
-    'yargs',
-    'yargs/helpers',
     'inquirer',
-    'globby',
     'path',
     'fs/promises',
     'ejs',
@@ -34,5 +31,6 @@ export default {
     'url',
     'child_process',
     'util',
+    'fast-glob',
   ],
 };

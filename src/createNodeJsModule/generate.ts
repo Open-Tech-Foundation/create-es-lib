@@ -1,4 +1,4 @@
-import globby from 'globby';
+import fg from 'fast-glob';
 import Path from 'path';
 import { mkdir, readFile, writeFile } from 'fs/promises';
 import camelcase from 'camelcase';
@@ -13,7 +13,8 @@ export default async function generate(
   destPath: string,
   config: IConfig
 ): Promise<void> {
-  const filePaths = await globby([templatePath], { dot: true });
+  const filePaths = await fg([`${templatePath}/**`], { dot: true });
+
   for await (const f of filePaths) {
     const buffer = await readFile(f);
     const fileExt = Path.extname(f);

@@ -33,6 +33,7 @@ describe('createNodeJsModule', () => {
       authorFullName: 'tg',
       authorEmail: 'a@a',
       pkgManager: 'npm',
+      lic: null,
     };
     await createNodeJsModule(config);
     expect(ConsoleError).not.toHaveBeenCalled();
@@ -54,6 +55,7 @@ describe('createNodeJsModule', () => {
       authorFullName: 'tg',
       authorEmail: 'a@a',
       pkgManager: 'yarn-v2-nm',
+      lic: null,
     };
     await createNodeJsModule(config);
     expect(ConsoleError).not.toHaveBeenCalled();
@@ -79,6 +81,7 @@ describe('createNodeJsModule', () => {
       authorFullName: 'tg',
       authorEmail: 'a@a',
       pkgManager: 'yarn-v2-pnp',
+      lic: null,
     };
     await createNodeJsModule(config);
     expect(ConsoleError).not.toHaveBeenCalled();
