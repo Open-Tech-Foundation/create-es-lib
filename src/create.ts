@@ -94,6 +94,12 @@ async function getAuthorFullName() {
       name: 'authorFullName',
       message: 'Enter author fullname',
       default: '',
+      validate: (input) => {
+        if (!input) {
+          return 'Please enter author fullname';
+        }
+        return true;
+      },
     },
   ]);
 
