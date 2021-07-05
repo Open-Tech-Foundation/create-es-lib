@@ -1,9 +1,6 @@
-import { exec } from 'child_process';
-import { promisify } from 'util';
+import { spawn } from 'child_process';
 
 import IConfig from '../IConfig';
-
-const aexec = promisify(exec);
 
 function getPkgManagerCmd(pkgManager: string): string {
   const pkgManagerIDs: Record<string, string> = {
@@ -38,5 +35,18 @@ export default async function installDevDeps(
     deps.push(...tsDeps);
   }
 
-  await aexec(`${cmd} ${deps.join(' ')}`, { cwd: destPath });
+  const cp = spawn(cmd, deps, { cwd: destPath, shell: true });
+  return new Promise((resolve) => {
+    cp.stdout.on('data', (data) => {
+      console.log(`stdout: ${data}`);
+    });
+
+    cp.stderr.on('data', (data) => {
+      console.error(`stderr: ${data}`);
+    });
+
+    cp.on('close', () => {
+      resolve();
+    });
+  });
 }

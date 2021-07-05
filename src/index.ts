@@ -1,3 +1,4 @@
 import create from './create';
+import createNodeJsModule from './createNodeJsModule';
 
-export default create;
+export { create, createNodeJsModule };

@@ -18,8 +18,7 @@ export default async function createNodeJsModule(
     copySpinner.succeed('Created lib files from templates');
   } catch (error) {
     copySpinner.fail('Error in creating files from templates');
-    console.error(error);
-    process.exit(1);
+    throw error;
   }
 
   const depsSpinner = ora('Installing dev dependencies').start();
@@ -28,7 +27,6 @@ export default async function createNodeJsModule(
     depsSpinner.succeed(`Dev dependencies installed`);
   } catch (error) {
     depsSpinner.fail('Failed to install dev dependencies');
-    console.error(error);
-    process.exit(1);
+    throw error;
   }
 }

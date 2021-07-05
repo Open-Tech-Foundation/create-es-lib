@@ -152,14 +152,19 @@ export default function create(): void {
   const header = chalk`\n{bold.rgb(255, 136, 0) @open-tech-world/create-es-lib}\n`;
   console.log(header);
 
-  const program = new Command();
-  program
-    .name('create-es-lib')
-    .description('Create Modern ES Library.')
-    .version('0.1.0', '-v, --version')
-    .argument('[libName]')
-    .action((libName) => {
-      run(libName);
-    });
-  program.parse(process.argv);
+  try {
+    const program = new Command();
+    program
+      .name('create-es-lib')
+      .description('Create Modern ES Library.')
+      .version('0.1.0', '-v, --version')
+      .argument('[libName]')
+      .action((libName) => {
+        run(libName);
+      });
+    program.parse(process.argv);
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
 }
