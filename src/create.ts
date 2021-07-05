@@ -63,7 +63,6 @@ async function getPkgManager() {
       choices: [
         { name: 'Npm', value: 'npm' },
         { name: 'pnpm', value: 'pnpm', disabled: true },
-        { name: 'Yarn - Classic', value: 'yarn-v1' },
         { name: 'Yarn - Berry (Node Modules)', value: 'yarn-v2-nm' },
         { name: 'Yarn - Berry (PnP)', value: 'yarn-v2-pnp' },
       ],

@@ -749,6 +749,7 @@ __metadata:
     eslint-config-prettier: ^8.3.0
     eslint-plugin-jest: ^24.3.6
     eslint-plugin-prettier: ^3.4.0
+    fast-glob: ^3.2.6
     globby: ^11.0.4
     inquirer: ^8.1.1
     jest: ^27.0.6
@@ -2398,7 +2399,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.0.3, fast-glob@npm:^3.1.1":
+"fast-glob@npm:^3.0.3, fast-glob@npm:^3.1.1, fast-glob@npm:^3.2.6":
   version: 3.2.6
   resolution: "fast-glob@npm:3.2.6"
   dependencies:

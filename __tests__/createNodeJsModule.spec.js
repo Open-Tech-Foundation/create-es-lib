@@ -1,15 +1,15 @@
 import process from 'process';
 import Os from 'os';
 import { jest } from '@jest/globals';
+import fg from 'fast-glob';
 
 import { createNodeJsModule } from '../lib/createESLib.js';
-import { rmdirSync } from 'fs';
+import { existsSync, rmdirSync } from 'fs';
 import path from 'path';
 
 const tempDir = Os.tmpdir();
+const myLibPath = path.join(tempDir, 'my-lib');
 let ConsoleError;
-
-jest.setTimeout(50000);
 
 beforeAll(() => {
   rmdirSync(path.join(tempDir, 'my-lib'), { recursive: true });
@@ -26,7 +26,7 @@ afterEach(() => {
 });
 
 describe('createNodeJsModule', () => {
-  it('creates a my-lib', async () => {
+  it('creates a js lib with npm', async () => {
     const config = {
       libName: 'my-lib',
       ts: false,
@@ -36,5 +36,62 @@ describe('createNodeJsModule', () => {
     };
     await createNodeJsModule(config);
     expect(ConsoleError).not.toHaveBeenCalled();
-  });
+    expect(existsSync(myLibPath)).toBeTruthy();
+    const files = fg.sync(['my-lib/**', '!my-lib/node_modules'], {
+      dot: true,
+      cwd: tempDir,
+    });
+    expect(files.length).toBe(8);
+    expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
+    expect(existsSync(path.join(myLibPath, 'node_modules'))).toBeTruthy();
+    expect(existsSync(path.join(myLibPath, 'package-lock.json'))).toBeTruthy();
+  }, 50000);
+
+  it('creates a js lib with yarn v2 node_modules', async () => {
+    const config = {
+      libName: 'my-lib',
+      ts: false,
+      authorFullName: 'tg',
+      authorEmail: 'a@a',
+      pkgManager: 'yarn-v2-nm',
+    };
+    await createNodeJsModule(config);
+    expect(ConsoleError).not.toHaveBeenCalled();
+    expect(existsSync(myLibPath)).toBeTruthy();
+    const files = fg.sync(
+      ['my-lib/**', '!my-lib/.yarn', '!my-lib/node_modules'],
+      {
+        dot: true,
+        cwd: tempDir,
+      }
+    );
+    expect(files.length).toBe(9);
+    expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
+    expect(existsSync(path.join(myLibPath, 'node_modules'))).toBeTruthy();
+    expect(existsSync(path.join(myLibPath, 'yarn.lock'))).toBeTruthy();
+    expect(existsSync(path.join(myLibPath, 'package-lock.json'))).toBeFalsy();
+  }, 50000);
+
+  it('creates a js lib with yarn v2 pnp', async () => {
+    const config = {
+      libName: 'my-lib',
+      ts: false,
+      authorFullName: 'tg',
+      authorEmail: 'a@a',
+      pkgManager: 'yarn-v2-pnp',
+    };
+    await createNodeJsModule(config);
+    expect(ConsoleError).not.toHaveBeenCalled();
+    expect(existsSync(myLibPath)).toBeTruthy();
+    const files = fg.sync(['my-lib/**', '!my-lib/.yarn'], {
+      dot: true,
+      cwd: tempDir,
+    });
+    expect(files.length).toBe(10);
+    expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
+    expect(existsSync(path.join(myLibPath, 'node_modules'))).toBeFalsy();
+    expect(existsSync(path.join(myLibPath, 'yarn.lock'))).toBeTruthy();
+    expect(existsSync(path.join(myLibPath, 'package-lock.json'))).toBeFalsy();
+    expect(existsSync(path.join(myLibPath, '.pnp.cjs'))).toBeTruthy();
+  }, 50000);
 });

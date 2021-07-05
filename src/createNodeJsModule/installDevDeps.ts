@@ -1,11 +1,12 @@
-import { spawn } from 'child_process';
+import { writeFile } from 'fs/promises';
+import Path from 'path';
 
 import IConfig from '../IConfig';
+import subProcess from '../utils/subProcess';
 
 function getPkgManagerCmd(pkgManager: string): string {
   const pkgManagerIDs: Record<string, string> = {
     npm: 'npm install --save-dev',
-    'yarn-v1': 'yarn add --dev',
     'yarn-v2-nm': 'yarn add --dev',
     'yarn-v2-pnp': 'yarn add --dev',
     pnpm: 'pnpm add --save-dev',
@@ -35,18 +36,20 @@ export default async function installDevDeps(
     deps.push(...tsDeps);
   }
 
-  const cp = spawn(cmd, deps, { cwd: destPath, shell: true });
-  return new Promise((resolve) => {
-    cp.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
-    });
+  if (config.pkgManager.startsWith('yarn')) {
+    await subProcess('yarn', ['set version berry'], destPath);
+  }
 
-    cp.stderr.on('data', (data) => {
-      console.error(`stderr: ${data}`);
-    });
+  if (config.pkgManager === 'yarn-v2-nm') {
+    await writeFile(
+      Path.join(destPath, '.yarnrc.yml'),
+      'nodeLinker: node-modules'
+    );
+  }
 
-    cp.on('close', () => {
-      resolve();
-    });
-  });
+  if (config.pkgManager === 'yarn-v2-pnp') {
+    await writeFile(Path.join(destPath, '.yarnrc.yml'), 'nodeLinker: pnp');
+  }
+
+  await subProcess(cmd, deps, destPath);
 }
