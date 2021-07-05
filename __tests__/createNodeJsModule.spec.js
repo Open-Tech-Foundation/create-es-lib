@@ -22,7 +22,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  // rmdirSync(path.join(tempDir, 'my-lib'), { recursive: true });
+  rmdirSync(path.join(tempDir, 'my-lib'), { recursive: true });
 });
 
 describe('createNodeJsModule', () => {
@@ -95,7 +95,7 @@ describe('createNodeJsModule', () => {
     expect(existsSync(path.join(myLibPath, '.pnp.cjs'))).toBeTruthy();
   }, 50000);
 
-  it.only('creates a js lib with Apache-2.0 license', async () => {
+  it('creates a js lib with Apache-2.0 license', async () => {
     const config = {
       libName: 'my-lib',
       ts: false,
@@ -103,6 +103,28 @@ describe('createNodeJsModule', () => {
       authorEmail: 'tg@g.com',
       pkgManager: null,
       lic: 'Apache-2.0',
+      year: 2021,
+    };
+    await createNodeJsModule(config);
+    expect(ConsoleError).not.toHaveBeenCalled();
+    expect(existsSync(myLibPath)).toBeTruthy();
+    const files = fg.sync(['my-lib/**'], {
+      dot: true,
+      cwd: tempDir,
+    });
+    expect(files.length).toBe(8);
+    expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
+    expect(existsSync(path.join(myLibPath, 'LICENSE'))).toBeTruthy();
+  }, 50000);
+
+  it('creates a js lib with MIT license', async () => {
+    const config = {
+      libName: 'my-lib',
+      ts: false,
+      authorFullName: 'tg',
+      authorEmail: 'tg@g.com',
+      pkgManager: null,
+      lic: 'MIT',
       year: 2021,
     };
     await createNodeJsModule(config);
