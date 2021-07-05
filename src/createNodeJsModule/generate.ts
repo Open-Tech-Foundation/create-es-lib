@@ -39,4 +39,13 @@ export default async function generate(
     await mkdir(Path.dirname(destFilePath), { recursive: true });
     await writeFile(destFilePath, data);
   }
+
+  if (config.lic) {
+    const buffer = await readFile(
+      Path.join(templatePath, '..', 'licenses', config.lic + '.ejs')
+    );
+    const data = compile(buffer, { ...config });
+    const destFilePath = Path.join(destPath, 'LICENSE');
+    await writeFile(destFilePath, data);
+  }
 }

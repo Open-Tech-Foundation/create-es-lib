@@ -6,4 +6,6 @@ export default interface IConfig {
   pkgScope: string;
   authorFullName: string;
   authorEmail: string;
+  lic: string | null;
+  year: number;
 }

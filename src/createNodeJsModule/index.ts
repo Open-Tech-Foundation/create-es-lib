@@ -21,12 +21,23 @@ export default async function createNodeJsModule(
     throw error;
   }
 
-  const depsSpinner = ora('Installing dev dependencies').start();
-  try {
-    await installDevDeps(destPath, config);
-    depsSpinner.succeed(`Dev dependencies installed`);
-  } catch (error) {
-    depsSpinner.fail('Failed to install dev dependencies');
-    throw error;
+  if (config.pkgManager) {
+    const depsSpinner = ora('Installing dev dependencies').start();
+    try {
+      await installDevDeps(destPath, config);
+      depsSpinner.succeed(`Dev dependencies installed`);
+    } catch (error) {
+      depsSpinner.fail('Failed to install dev dependencies');
+      throw error;
+    }
   }
+
+  // const gitSpinner = ora('Commiting to git').start();
+  // try {
+  //   await commitToGit(config, destPath);
+  //   gitSpinner.succeed(`Files commited to git`);
+  // } catch (error) {
+  //   depsSpinner.fail('Git commit failed');
+  //   throw error;
+  // }
 }

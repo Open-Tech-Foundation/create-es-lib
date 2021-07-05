@@ -54,6 +54,32 @@ async function getTypeScriptSupport() {
   return answer.ts;
 }
 
+async function getLic() {
+  const answer = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'lic',
+      message: 'Choose a license',
+      choices: [
+        { name: 'None', value: null },
+        { name: 'Apache License 2.0', value: 'Apache-2.0' },
+        {
+          name: 'BSD 3-Clause "New" or "Revised" License',
+          value: 'BSD-3-Clause',
+        },
+        {
+          name: 'GNU General Public License v3.0 or later',
+          value: 'GPL-3.0-or-later',
+        },
+        { name: 'MIT License', value: 'MIT' },
+      ],
+      default: 'None',
+    },
+  ]);
+
+  return answer.lic;
+}
+
 async function getPkgManager() {
   const answer = await inquirer.prompt([
     {
@@ -61,6 +87,7 @@ async function getPkgManager() {
       name: 'pkgManager',
       message: 'Select a package manager',
       choices: [
+        { name: 'None', value: null },
         { name: 'Npm', value: 'npm' },
         { name: 'pnpm', value: 'pnpm', disabled: true },
         { name: 'Yarn - Berry (Node Modules)', value: 'yarn-v2-nm' },
@@ -150,6 +177,8 @@ async function run(libName: string | undefined) {
   config.pkgScope = await getPkgScope();
   config.authorFullName = await getAuthorFullName();
   config.authorEmail = await getAuthorEmail();
+  config.lic = await getLic();
+  config.year = new Date().getFullYear();
   createLib(config as IConfig);
 }
 
