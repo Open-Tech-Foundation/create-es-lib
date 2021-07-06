@@ -1,0 +1,7 @@
+import <%= pkgName -%> from '../<%= buildDir -%>/<%= pkgName -%>.js';
+
+describe('<%= pkgName %>', () => {
+    test('index', () => {
+        expect(<%= pkgName %>()).toMatch(/Hello World!/);
+    })
+})

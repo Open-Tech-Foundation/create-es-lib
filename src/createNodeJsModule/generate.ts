@@ -1,12 +1,10 @@
 import fg from 'fast-glob';
 import Path from 'path';
 import { mkdir, readFile, writeFile } from 'fs/promises';
-import camelcase from 'camelcase';
 
 import IConfig from '../IConfig';
 import compile from '../utils/compile';
 import prettify from '../utils/prettify';
-import getPkgName from '../utils/getPkgName';
 
 export default async function generate(
   templatePath: string,
@@ -24,8 +22,6 @@ export default async function generate(
     if (fileExt === '.ejs') {
       data = compile(buffer, {
         ...config,
-        libName: camelcase(config.libName),
-        pkgName: getPkgName(config.libName, config.pkgScope),
       });
       destFilePath = destFilePath.replace(fileExt, '');
     } else {
@@ -54,11 +50,23 @@ export default async function generate(
     const buffer = await readFile(
       Path.join(templatePath, '..', 'shared', 'bundler', 'rollup.config.js.ejs')
     );
-    let data = compile(buffer, {
-      ...config,
-      libName: camelcase(config.libName),
-    });
+    let data = compile(buffer, config);
     const destFilePath = Path.join(destPath, 'rollup.config.js');
+    data = prettify(data.toString(), destFilePath);
+    await writeFile(destFilePath, data);
+  }
+
+  if (config.testRunner && config.testRunner === 'jest') {
+    await mkdir(Path.join(destPath, '__tests__'));
+    const buffer = await readFile(
+      Path.join(templatePath, '..', 'shared', 'jest.ejs')
+    );
+    let data = compile(buffer, config);
+    const destFilePath = Path.join(
+      destPath,
+      '__tests__',
+      config.pkgName + '.spec.js'
+    );
     data = prettify(data.toString(), destFilePath);
     await writeFile(destFilePath, data);
   }

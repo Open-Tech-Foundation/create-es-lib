@@ -1,5 +1,5 @@
 {
-    "name": "<%= pkgName %>",
+    "name": "<%= pkgNameWithScope %>",
     "version": "0.1.0",
     "description": "",
     "keywords": [],
@@ -11,17 +11,21 @@
     "license": "<%= lic %>",
     "homepage": "",
     "type": "module",
-    "module": "lib/<%= libName %>.esm.js",
+    "module": "lib/<%= pkgName %>.js",
     "scripts": {
         <% if (bundler && bundler === 'rollup') { %>
             "build": "rollup -c",
             "build:w": "rollup -c -w",         
         <% } %>
-        "test": "echo \"Error: no test specified\" && exit 1"
+        <% if (testRunner === 'jest') { %>
+            "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+        <% } else { %>
+             "test": "echo \"Error: no test specified\" && exit 1"
+        <% } %>
     },
     "files": [
     <% if (buildDir) { %>
-     "<%= buildDir %> "
+     "<%= buildDir %>"
     <% } %>
     ]
 }

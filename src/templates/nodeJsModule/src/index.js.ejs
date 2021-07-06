@@ -30,6 +30,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <% } %>
 
-export default function <%= libName %>()<%= ts ? ': void' : '' %> {
-  console.log('Hello world!');
+export default function <%= pkgName %>()<%= ts ? ': string' : '' %> {
+  return 'Hello World!';
 }

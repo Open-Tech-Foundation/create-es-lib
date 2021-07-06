@@ -1,5 +1,7 @@
 export default interface IConfig {
   libName: string;
+  pkgName?: string;
+  pkgNameWithScope?: string;
   libType: string;
   ts: boolean;
   pkgManager: string;
@@ -10,4 +12,5 @@ export default interface IConfig {
   year: number;
   bundler: string | null;
   buildDir: string;
+  testRunner: string | null;
 }

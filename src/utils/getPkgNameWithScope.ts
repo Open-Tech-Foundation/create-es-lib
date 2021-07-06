@@ -1,4 +1,4 @@
-export default function getPkgName(
+export default function getPkgNameWithScope(
   libName: string,
   scope: string | undefined
 ): string {

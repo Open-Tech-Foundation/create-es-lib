@@ -5,7 +5,7 @@ import typescript from '@rollup/plugin-typescript';
 export default {
   input: '<%= ts ? 'src/index.ts' : 'src/index.js' %>',
   output: {
-    file: <%- `'${buildDir}/${libName}.js'` %>,
+    file: <%- `'${buildDir}/${pkgName}.js'` %>,
     format: 'esm',
   },
   plugins: [

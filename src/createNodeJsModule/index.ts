@@ -1,14 +1,21 @@
 import Path from 'path';
 import ora from 'ora';
+import camelcase from 'camelcase';
 
 import IConfig from '../IConfig';
 import generate from './generate';
 import getCurrentDir from '../utils/getCurrentDir';
 import installDevDeps from './installDevDeps';
+import getPkgNameWithScope from '../utils/getPkgNameWithScope';
 
 export default async function createNodeJsModule(
   config: IConfig
 ): Promise<void> {
+  config = {
+    ...config,
+    pkgName: camelcase(config.libName),
+    pkgNameWithScope: getPkgNameWithScope(config.libName, config.pkgScope),
+  };
   const templatePath = Path.join(getCurrentDir(), 'templates', 'nodeJsModule');
   const destPath = Path.join(process.cwd(), config.libName);
   const copySpinner = ora('Creating lib files from templates').start();

@@ -8,6 +8,9 @@
     <% if (ts) { -%>
     "plugin:@typescript-eslint/recommended",
     <% } -%>
+    <% if (testRunner === 'jest') { -%>
+    "plugin:jest/recommended",
+    <% } -%>
     "plugin:prettier/recommended"
   ],
   <% if (ts) { -%>

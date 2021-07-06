@@ -118,6 +118,29 @@ async function getBundler() {
   return answer.bundler;
 }
 
+async function getTestRunner() {
+  const answer = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'testRunner',
+      message: 'Select a test runner/framework',
+      choices: [
+        { name: 'None', value: null },
+        { name: 'AVA', value: 'ava', disabled: true },
+        { name: 'Jasmine', value: 'jasmine', disabled: true },
+        { name: 'Jest', value: 'jest' },
+        { name: 'Karma', value: 'karma', disabled: true },
+        { name: 'Mocha', value: 'mocha', disabled: true },
+        { name: 'QUnit', value: 'qunit', disabled: true },
+        { name: 'Tap', value: 'tap', disabled: true },
+      ],
+      default: null,
+    },
+  ]);
+
+  return answer.bundler;
+}
+
 async function getPkgScope() {
   const answer = await inquirer.prompt([
     {
@@ -217,6 +240,7 @@ async function run(libName: string | undefined) {
   config.lic = await getLic();
   config.bundler = await getBundler();
   config.buildDir = await getBuildDir();
+  config.testRunner = await getTestRunner();
   config.year = new Date().getFullYear();
   createLib(config as IConfig);
 }
