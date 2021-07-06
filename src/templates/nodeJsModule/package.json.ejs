@@ -8,7 +8,7 @@
         email: "<%= authorEmail %>",
         url: ""
     },
-    "license": "<%= lic %>",
+    "license": "<%= lic ? lic : 'UNLICENSED' %>",
     "homepage": "",
     <% if (gitProvider) { %>
         "repository": {

@@ -10,6 +10,18 @@ import path from 'path';
 const tempDir = Os.tmpdir();
 const myLibPath = path.join(tempDir, 'my-lib');
 let ConsoleError;
+const baseConfig = {
+  libName: 'my-lib',
+  ts: false,
+  authorFullName: 'tg',
+  authorEmail: 'a@a',
+  gitProvider: null,
+  lic: null,
+  bundler: null,
+  buildDir: null,
+  testRunner: null,
+  year: 2021,
+};
 
 beforeAll(() => {
   rmdirSync(path.join(tempDir, 'my-lib'), { recursive: true });
@@ -28,15 +40,8 @@ afterEach(() => {
 describe('createNodeJsModule', () => {
   it('creates a js lib with npm', async () => {
     const config = {
-      libName: 'my-lib',
-      ts: false,
-      authorFullName: 'tg',
-      authorEmail: 'a@a',
+      ...baseConfig,
       pkgManager: 'npm',
-      lic: null,
-      bundler: null,
-      buildDir: null,
-      testRunner: null,
     };
     await createNodeJsModule(config);
     expect(ConsoleError).not.toHaveBeenCalled();
@@ -53,15 +58,8 @@ describe('createNodeJsModule', () => {
 
   it('creates a js lib with yarn v2 node_modules', async () => {
     const config = {
-      libName: 'my-lib',
-      ts: false,
-      authorFullName: 'tg',
-      authorEmail: 'a@a',
+      ...baseConfig,
       pkgManager: 'yarn-v2-nm',
-      lic: null,
-      bundler: null,
-      buildDir: null,
-      testRunner: null,
     };
     await createNodeJsModule(config);
     expect(ConsoleError).not.toHaveBeenCalled();
@@ -82,15 +80,8 @@ describe('createNodeJsModule', () => {
 
   it('creates a js lib with yarn v2 pnp', async () => {
     const config = {
-      libName: 'my-lib',
-      ts: false,
-      authorFullName: 'tg',
-      authorEmail: 'a@a',
+      ...baseConfig,
       pkgManager: 'yarn-v2-pnp',
-      lic: null,
-      bundler: null,
-      buildDir: null,
-      testRunner: null,
     };
     await createNodeJsModule(config);
     expect(ConsoleError).not.toHaveBeenCalled();
@@ -109,16 +100,8 @@ describe('createNodeJsModule', () => {
 
   it('creates a js lib with Apache-2.0 license', async () => {
     const config = {
-      libName: 'my-lib',
-      ts: false,
-      authorFullName: 'tg',
-      authorEmail: 'tg@g.com',
-      pkgManager: null,
+      ...baseConfig,
       lic: 'Apache-2.0',
-      year: 2021,
-      bundler: null,
-      buildDir: null,
-      testRunner: null,
     };
     await createNodeJsModule(config);
     expect(ConsoleError).not.toHaveBeenCalled();
@@ -134,16 +117,8 @@ describe('createNodeJsModule', () => {
 
   it('creates a js lib with MIT license', async () => {
     const config = {
-      libName: 'my-lib',
-      ts: false,
-      authorFullName: 'tg',
-      authorEmail: 'tg@g.com',
-      pkgManager: null,
+      ...baseConfig,
       lic: 'MIT',
-      year: 2021,
-      bundler: null,
-      buildDir: null,
-      testRunner: null,
     };
     await createNodeJsModule(config);
     expect(ConsoleError).not.toHaveBeenCalled();
@@ -159,15 +134,11 @@ describe('createNodeJsModule', () => {
 
   it('creates a ts lib with rollup bundler', async () => {
     const config = {
-      libName: 'my-lib',
+      ...baseConfig,
       ts: true,
-      authorFullName: 'tg',
-      authorEmail: 'tg@g.com',
       pkgManager: 'yarn-v2-nm',
       bundler: 'rollup',
       buildDir: 'lib',
-      lic: null,
-      testRunner: null,
     };
     await createNodeJsModule(config);
     expect(ConsoleError).not.toHaveBeenCalled();
@@ -186,15 +157,12 @@ describe('createNodeJsModule', () => {
 
   it('creates a ts lib with rollup & jest', async () => {
     const config = {
-      libName: 'my-lib',
+      ...baseConfig,
       pkgScope: 'tech',
       ts: true,
-      authorFullName: 'tg',
-      authorEmail: 'tg@g.com',
       pkgManager: 'yarn-v2-nm',
       bundler: 'rollup',
       buildDir: 'lib',
-      lic: null,
       testRunner: 'jest',
     };
     await createNodeJsModule(config);
@@ -217,16 +185,8 @@ describe('createNodeJsModule', () => {
 
   it('creates a js lib & add files to git with commit msg', async () => {
     const config = {
-      libName: 'my-lib',
+      ...baseConfig,
       pkgScope: 'tech',
-      ts: false,
-      authorFullName: 'tg',
-      authorEmail: 'tg@g.com',
-      pkgManager: null,
-      bundler: null,
-      buildDir: 'lib',
-      lic: null,
-      testRunner: null,
       gitProvider: 'github',
       gitProviderUsername: 'ganapathy888',
       commitMsg: 'Initial commit',
