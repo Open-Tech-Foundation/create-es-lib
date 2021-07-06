@@ -1,6 +1,4 @@
 import chalk from 'chalk';
-// import yargs from 'yargs';
-// import { hideBin } from 'yargs/helpers';
 import { Command } from 'commander';
 import inquirer from 'inquirer';
 import emailRegex from 'email-regex';
@@ -14,8 +12,11 @@ async function getLibType() {
       type: 'list',
       name: 'libType',
       message: 'Select a library type',
-      choices: ['Browser', 'Node.js CLI', 'Node.js Module'],
-      default: 'Browser',
+      choices: [
+        { name: 'Browser', value: 'browser', disabled: true },
+        { name: 'Node.js CLI', value: 'node_cli', disabled: true },
+        { name: 'Node.js Module', value: 'node_mod' },
+      ],
     },
   ]);
 
@@ -118,6 +119,25 @@ async function getBundler() {
   return answer.bundler;
 }
 
+async function getGitProvider() {
+  const answer = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'gitProvider',
+      message: 'Select a git hosting provider',
+      choices: [
+        { name: 'None', value: null },
+        { name: 'Bitbucket', value: 'bitbucket', disabled: true },
+        { name: 'GitHub', value: 'github' },
+        { name: 'GitLab', value: 'gitlab', disabled: true },
+      ],
+      default: null,
+    },
+  ]);
+
+  return answer.gitProvider;
+}
+
 async function getTestRunner() {
   const answer = await inquirer.prompt([
     {
@@ -173,6 +193,44 @@ async function getAuthorFullName() {
   return answer.authorFullName;
 }
 
+async function getGitProiderUsername(provider: string) {
+  const answer = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'gitProviderUsername',
+      message: `Enter ${provider} username`,
+      default: '',
+      validate: (input) => {
+        if (!input) {
+          return 'Please enter valid username';
+        }
+        return true;
+      },
+    },
+  ]);
+
+  return answer.gitProviderUsername;
+}
+
+async function getCommitMsg() {
+  const answer = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'commitMsg',
+      message: 'Enter initial commit message',
+      default: 'Initial commit',
+      validate: (input) => {
+        if (!input) {
+          return 'Please enter valid commit msg';
+        }
+        return true;
+      },
+    },
+  ]);
+
+  return answer.commitMsg;
+}
+
 async function getBuildDir() {
   const answer = await inquirer.prompt([
     {
@@ -211,13 +269,13 @@ async function getAuthorEmail() {
 
 function createLib(config: IConfig) {
   switch (config.libType) {
-    case 'Browser':
+    case 'browser':
       console.log('Not implemented yet');
       break;
-    case 'Node.js CLI':
+    case 'node_cli':
       console.log('Not implemented yet');
       break;
-    case 'Node.js Module':
+    case 'node_mod':
       createNodeJsModule(config);
       break;
   }
@@ -241,6 +299,13 @@ async function run(libName: string | undefined) {
   config.bundler = await getBundler();
   config.buildDir = await getBuildDir();
   config.testRunner = await getTestRunner();
+  config.gitProvider = await getGitProvider();
+  if (config.gitProvider) {
+    config.gitProviderUsername = await getGitProiderUsername(
+      config.gitProvider
+    );
+    config.commitMsg = await getCommitMsg();
+  }
   config.year = new Date().getFullYear();
   createLib(config as IConfig);
 }

@@ -13,4 +13,8 @@ export default interface IConfig {
   bundler: string | null;
   buildDir: string;
   testRunner: string | null;
+  gitProvider: string | null;
+  commitMsg: string;
+  gitUrl: string | null;
+  gitProviderUsername: string | null;
 }

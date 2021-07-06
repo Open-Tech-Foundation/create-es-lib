@@ -214,4 +214,31 @@ describe('createNodeJsModule', () => {
       existsSync(path.join(myLibPath, '__tests__/myLib.spec.js'))
     ).toBeTruthy();
   }, 50000);
+
+  it('creates a js lib & add files to git with commit msg', async () => {
+    const config = {
+      libName: 'my-lib',
+      pkgScope: 'tech',
+      ts: false,
+      authorFullName: 'tg',
+      authorEmail: 'tg@g.com',
+      pkgManager: null,
+      bundler: null,
+      buildDir: 'lib',
+      lic: null,
+      testRunner: null,
+      gitProvider: 'github',
+      gitProviderUsername: 'ganapathy888',
+      commitMsg: 'Initial commit',
+    };
+    await createNodeJsModule(config);
+    expect(ConsoleError).not.toHaveBeenCalled();
+    expect(existsSync(myLibPath)).toBeTruthy();
+    const files = fg.sync(['my-lib/**', '!my-lib/.git'], {
+      dot: true,
+      cwd: tempDir,
+    });
+    expect(files.length).toBe(7);
+    expect(existsSync(path.join(myLibPath, '.git'))).toBeTruthy();
+  }, 50000);
 });

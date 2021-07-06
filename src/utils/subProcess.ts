@@ -8,11 +8,18 @@ export default async function subProcess(
   const s = spawn(cmd, args, { cwd, shell: true, stdio: 'ignore' });
 
   return new Promise((resolve, reject) => {
-    // s.stdout.on('data', (chunk) => {
-    //   console.log(chunk.toString());
-    // });
+    // if (s.stdout) {
+    //   s.stdout.on('data', (chunk) => {
+    //     console.log(chunk.toString());
+    //   });
+    // }
+    // if (s.stderr) {
+    //   s.stderr.on('data', (chunk) => {
+    //     console.log(chunk.toString());
+    //   });
+    // }
     s.on('close', (code) => {
-      if (code === 1) {
+      if (code && code > 0) {
         reject(code);
       }
       resolve();

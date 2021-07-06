@@ -10,6 +10,12 @@
     },
     "license": "<%= lic %>",
     "homepage": "",
+    <% if (gitProvider) { %>
+        "repository": {
+            "type": "git",
+            "url": "<%= gitUrl %>"
+          },
+    <% } %>
     "type": "module",
     "module": "lib/<%= pkgName %>.js",
     "scripts": {
