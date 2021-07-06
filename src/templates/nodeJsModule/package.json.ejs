@@ -13,6 +13,15 @@
     "type": "module",
     "module": "lib/<%= libName %>.esm.js",
     "scripts": {
+        <% if (bundler && bundler === 'rollup') { %>
+            "build": "rollup -c",
+            "build:w": "rollup -c -w",         
+        <% } %>
         "test": "echo \"Error: no test specified\" && exit 1"
-    }
+    },
+    "files": [
+    <% if (buildDir) { %>
+     "<%= buildDir %> "
+    <% } %>
+    ]
 }

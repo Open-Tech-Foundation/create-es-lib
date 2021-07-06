@@ -51,5 +51,14 @@ export default async function installDevDeps(
     await writeFile(Path.join(destPath, '.yarnrc.yml'), 'nodeLinker: pnp');
   }
 
+  if (config.bundler && config.bundler === 'rollup') {
+    const rollupDeps = ['rollup'];
+    deps.push(...rollupDeps);
+
+    if (config.ts) {
+      deps.push('@rollup/plugin-typescript');
+    }
+  }
+
   await subProcess(cmd, deps, destPath);
 }

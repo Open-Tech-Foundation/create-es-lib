@@ -100,6 +100,24 @@ async function getPkgManager() {
   return answer.pkgManager;
 }
 
+async function getBundler() {
+  const answer = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'bundler',
+      message: 'Select a module bundler',
+      choices: [
+        { name: 'None', value: null },
+        { name: 'Rollup', value: 'rollup' },
+        { name: 'Webpack', value: 'webpack', disabled: true },
+      ],
+      default: null,
+    },
+  ]);
+
+  return answer.bundler;
+}
+
 async function getPkgScope() {
   const answer = await inquirer.prompt([
     {
@@ -123,6 +141,25 @@ async function getAuthorFullName() {
       validate: (input) => {
         if (!input) {
           return 'Please enter author fullname';
+        }
+        return true;
+      },
+    },
+  ]);
+
+  return answer.authorFullName;
+}
+
+async function getBuildDir() {
+  const answer = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'buildDir',
+      message: 'Enter build dir (lib | build | dist)',
+      default: 'lib',
+      validate: (input) => {
+        if (!input) {
+          return 'Please enter a valid build dir';
         }
         return true;
       },
@@ -178,6 +215,8 @@ async function run(libName: string | undefined) {
   config.authorFullName = await getAuthorFullName();
   config.authorEmail = await getAuthorEmail();
   config.lic = await getLic();
+  config.bundler = await getBundler();
+  config.buildDir = await getBuildDir();
   config.year = new Date().getFullYear();
   createLib(config as IConfig);
 }

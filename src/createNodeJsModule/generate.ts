@@ -43,10 +43,23 @@ export default async function generate(
 
   if (config.lic) {
     const buffer = await readFile(
-      Path.join(templatePath, '..', 'licenses', config.lic + '.ejs')
+      Path.join(templatePath, '..', 'shared', 'licenses', config.lic + '.ejs')
     );
     const data = compile(buffer, { ...config });
     const destFilePath = Path.join(destPath, 'LICENSE');
+    await writeFile(destFilePath, data);
+  }
+
+  if (config.bundler && config.bundler === 'rollup') {
+    const buffer = await readFile(
+      Path.join(templatePath, '..', 'shared', 'bundler', 'rollup.config.js.ejs')
+    );
+    let data = compile(buffer, {
+      ...config,
+      libName: camelcase(config.libName),
+    });
+    const destFilePath = Path.join(destPath, 'rollup.config.js');
+    data = prettify(data.toString(), destFilePath);
     await writeFile(destFilePath, data);
   }
 }

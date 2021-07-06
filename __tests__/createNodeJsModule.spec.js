@@ -141,4 +141,30 @@ describe('createNodeJsModule', () => {
     expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
     expect(existsSync(path.join(myLibPath, 'LICENSE'))).toBeTruthy();
   }, 50000);
+
+  it('creates a ts lib with rollup bundler', async () => {
+    const config = {
+      libName: 'my-lib',
+      ts: true,
+      authorFullName: 'tg',
+      authorEmail: 'tg@g.com',
+      pkgManager: 'yarn-v2-nm',
+      bundler: 'rollup',
+      buildDir: 'lib',
+      lic: null,
+    };
+    await createNodeJsModule(config);
+    expect(ConsoleError).not.toHaveBeenCalled();
+    expect(existsSync(myLibPath)).toBeTruthy();
+    const files = fg.sync(
+      ['my-lib/**', '!my-lib/node_modules', '!my-lib/.yarn'],
+      {
+        dot: true,
+        cwd: tempDir,
+      }
+    );
+    expect(files.length).toBe(10);
+    expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();
+    expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
+  }, 50000);
 });

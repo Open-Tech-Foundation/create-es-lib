@@ -8,4 +8,6 @@ export default interface IConfig {
   authorEmail: string;
   lic: string | null;
   year: number;
+  bundler: string | null;
+  buildDir: string;
 }
