@@ -3,13 +3,14 @@ import { Command } from 'commander';
 import inquirer from 'inquirer';
 import emailRegex from 'email-regex';
 import { readFileSync } from 'fs';
+import Path from 'path';
 
 import createNodeJsModule from './createNodeJsModule';
 import IConfig from './IConfig';
+import getCurrentDir from './utils/getCurrentDir';
 
-const packageJson = JSON.parse(
-  readFileSync('package.json', { encoding: 'utf8' })
-);
+const packagePath = Path.join(getCurrentDir(), '..', 'package.json');
+const packageJson = JSON.parse(readFileSync(packagePath, { encoding: 'utf8' }));
 const VERSION = packageJson.version;
 
 async function getLibType() {
