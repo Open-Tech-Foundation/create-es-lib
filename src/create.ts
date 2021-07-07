@@ -319,7 +319,7 @@ export default function create(): void {
     program
       .name('create-es-lib')
       .description('Create Modern ES Library.')
-      .version('0.1.0', '-v, --version')
+      .version('0.1.4', '-v, --version')
       .argument('[libName]')
       .action((libName) => {
         run(libName);
