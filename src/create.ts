@@ -247,7 +247,7 @@ async function getBuildDir() {
     },
   ]);
 
-  return answer.authorFullName;
+  return answer.buildDir;
 }
 
 async function getAuthorEmail() {
