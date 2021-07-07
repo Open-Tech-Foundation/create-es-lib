@@ -752,10 +752,7 @@ __metadata:
     inquirer: ^8.1.1
     jest: ^27.0.6
     ora: ^5.4.1
-    p-each-series: ^2.1.0
-    p-map: ^2.1.0
     prettier: ^2.3.2
-    rmfr: ^2.0.0
     rollup: ^2.52.7
     rollup-plugin-copy: ^3.4.0
     typescript: ^4.3.5
@@ -1316,13 +1313,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"append-type@npm:^1.0.1":
-  version: 1.0.2
-  resolution: "append-type@npm:1.0.2"
-  checksum: 7b9b8a3a45aa59c08b835e8dda3abb6284cb5706658ef0c49d42a8fd2eadb1b50981c36b6182cf57866278aef19dcacdaeb315eff6291cbce542cd6414bba84e
-  languageName: node
-  linkType: hard
-
 "aproba@npm:^1.0.3":
   version: 1.2.0
   resolution: "aproba@npm:1.2.0"
@@ -1349,27 +1339,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"array-to-sentence@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "array-to-sentence@npm:1.1.0"
-  checksum: f2dcc098a4bb9ba8a1f7ebd4b0f2ff259074e1148a4c8defdb34c4e522d3d4a1d6e5c7c1900dd0220368df7bfe0ef45e9e5d263618223e2afdad3805fd7a4dfc
-  languageName: node
-  linkType: hard
-
 "array-union@npm:^2.1.0":
   version: 2.1.0
   resolution: "array-union@npm:2.1.0"
   checksum: 93af542eb854bf62a742192d0061c82788a963a9a6594628f367388f2b9f1bfd9215910febbbdd55074841555d8b59bda6a13ecba4a8e136f58b675499eda292
-  languageName: node
-  linkType: hard
-
-"assert-valid-glob-opts@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "assert-valid-glob-opts@npm:1.0.0"
-  dependencies:
-    glob-option-error: ^1.0.0
-    validate-glob-opts: ^1.0.0
-  checksum: 845046046ea4ad0ef80f0bc18fa3c4f970d8f1ecbbaa013aa45148287bc133059de1102e479cb44c4253b91e490ddad934af98f1321d979a8c74d469661e506e
   languageName: node
   linkType: hard
 
@@ -2610,13 +2583,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob-option-error@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "glob-option-error@npm:1.0.0"
-  checksum: 892e54d59936878e6614f53063fe8e38b9ee9d20a6ff7854b7d0ef9e7bb7cbbc4013e3b49642e4504302bff22413e1dbaad5a009b375490d1f89c6e8982a63e5
-  languageName: node
-  linkType: hard
-
 "glob-parent@npm:^5.1.2":
   version: 5.1.2
   resolution: "glob-parent@npm:5.1.2"
@@ -2686,7 +2652,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6":
+"graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6":
   version: 4.2.6
   resolution: "graceful-fs@npm:4.2.6"
   checksum: 84d39c7756892553da990a9db7e45f844b3309b37b5a00174cbb4748476f2250c54f24594d4d252f64f085c65c2fdac7c809419bf6d55f0e6e42eb07ac0f5bf2
@@ -2858,15 +2824,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"indexed-filter@npm:^1.0.0":
-  version: 1.0.3
-  resolution: "indexed-filter@npm:1.0.3"
-  dependencies:
-    append-type: ^1.0.1
-  checksum: 898d1461fa08c94a3e23863c1654dec33e378c4d4e72e970a772cb674c0c67c382949b31f50d4b783857b7f275a7eb7b5fdee31b6c6074fefdd2267d6a1285c3
-  languageName: node
-  linkType: hard
-
 "infer-owner@npm:^1.0.4":
   version: 1.0.4
   resolution: "infer-owner@npm:1.0.4"
@@ -2910,15 +2867,6 @@ __metadata:
     strip-ansi: ^6.0.0
     through: ^2.3.6
   checksum: e5cd5c1aa295970666009b555af2e954dc16144efb5fd5c08642653598f88f23a41dda9626c44bc5e9909d8269f5e3dcdddbe18512685d772b94743f263e0f6f
-  languageName: node
-  linkType: hard
-
-"inspect-with-kind@npm:^1.0.4":
-  version: 1.0.5
-  resolution: "inspect-with-kind@npm:1.0.5"
-  dependencies:
-    kind-of: ^6.0.2
-  checksum: 1806c9600c5fbbe1d816e0892d5532b72f7c8a696f6d7978aca59d75be93804d562b733cd557975837cc0f5af8bea8815186940052f5a8db460385ef77714a4b
   languageName: node
   linkType: hard
 
@@ -3027,13 +2975,6 @@ __metadata:
   version: 3.0.3
   resolution: "is-path-inside@npm:3.0.3"
   checksum: b19a2937441131e68b9eb9931ec8933bc87743a8f5364f6f7e1b8fc6c1403386ecf305835fb781e3986332fada456d71ff95af77ccda5806b35aac58234f9080
-  languageName: node
-  linkType: hard
-
-"is-plain-obj@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "is-plain-obj@npm:1.1.0"
-  checksum: d2eb5a32eacd7c79f3b2fe20552d091805a5ae88a7ca2aa71226bf822e4d690ef046ed2beb795f32666a401dfbf9a25ee3d4acde5426f963d55474468708ad22
   languageName: node
   linkType: hard
 
@@ -3775,13 +3716,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kind-of@npm:^6.0.2":
-  version: 6.0.3
-  resolution: "kind-of@npm:6.0.3"
-  checksum: 5de5d6577796af87a983199d6350ed41c670abec4a306cc43ca887c1afdbd6b89af9ab00016e3ca17eb7ad89ebfd9bb817d33baa89f855c6c95398a8b8abbf08
-  languageName: node
-  linkType: hard
-
 "kleur@npm:^3.0.3":
   version: 3.0.3
   resolution: "kleur@npm:3.0.3"
@@ -4279,13 +4213,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-map@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "p-map@npm:2.1.0"
-  checksum: 8557e841ed832a489aaee7d825b7bea73e0559c452578821f5af418f430a8455727ab8dd5b4318b6b6733096029cfa571aa0e8d21bdd2c213025f02f919f7a9a
-  languageName: node
-  linkType: hard
-
 "p-map@npm:^4.0.0":
   version: 4.0.0
   resolution: "p-map@npm:4.0.0"
@@ -4617,17 +4544,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rimraf@npm:^2.6.2":
-  version: 2.7.1
-  resolution: "rimraf@npm:2.7.1"
-  dependencies:
-    glob: ^7.1.3
-  bin:
-    rimraf: ./bin.js
-  checksum: 059efac2838ef917d4d1da1d80e724ad28c120cdf14ca6ed27ca72db2dc70be3e25421cba5947c6ec3d804c1d2bb9a247254653816ee0722bf943ffdd1ae19ef
-  languageName: node
-  linkType: hard
-
 "rimraf@npm:^3.0.0, rimraf@npm:^3.0.2":
   version: 3.0.2
   resolution: "rimraf@npm:3.0.2"
@@ -4636,19 +4552,6 @@ __metadata:
   bin:
     rimraf: bin.js
   checksum: f0de3e445581e64a8a077af476cc30708e659f5779ec2ca2a161556d0792aa318a685923798ae22055b4ecd02b9aff444ef619578f7af53cf8e0e248031e3dee
-  languageName: node
-  linkType: hard
-
-"rmfr@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "rmfr@npm:2.0.0"
-  dependencies:
-    assert-valid-glob-opts: ^1.0.0
-    glob: ^7.1.2
-    graceful-fs: ^4.1.11
-    inspect-with-kind: ^1.0.4
-    rimraf: ^2.6.2
-  checksum: ac072b03be9ca039e407e9460319a262b93dd343087fa4bd21a5d2ebcc0e38f8844c06308901350e44d78c51c38117c1540fd9ed797057ac6f42dc744cae28ba
   languageName: node
   linkType: hard
 
@@ -5309,18 +5212,6 @@ typescript@^4.3.5:
     convert-source-map: ^1.6.0
     source-map: ^0.7.3
   checksum: ada29177f2944438eecb6a2fafb2144553c9dc9e623a253083149f4bbb193d862f93bda3cfde93178f3ca799df67da8f0b87222bde8d415a06550476893de0fc
-  languageName: node
-  linkType: hard
-
-"validate-glob-opts@npm:^1.0.0":
-  version: 1.0.2
-  resolution: "validate-glob-opts@npm:1.0.2"
-  dependencies:
-    array-to-sentence: ^1.1.0
-    indexed-filter: ^1.0.0
-    inspect-with-kind: ^1.0.4
-    is-plain-obj: ^1.1.0
-  checksum: a26e287be57af8ab87801eebea981ef517ef77c1c10314c5732c01ed55e299018ce8c828b794cacf040f567d4a790f537243f7626058efeda4514cb939b178cf
   languageName: node
   linkType: hard
 
