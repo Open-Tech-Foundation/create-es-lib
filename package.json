@@ -6,7 +6,8 @@
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "build": "rollup -c",
-    "build:w": "rollup -c -w"
+    "build:w": "rollup -c -w",
+    "publish": "yarn build && npm publish"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
