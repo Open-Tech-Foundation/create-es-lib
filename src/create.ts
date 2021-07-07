@@ -158,7 +158,7 @@ async function getTestRunner() {
     },
   ]);
 
-  return answer.bundler;
+  return answer.testRunner;
 }
 
 async function getPkgScope() {
