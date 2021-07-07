@@ -2,9 +2,15 @@ import chalk from 'chalk';
 import { Command } from 'commander';
 import inquirer from 'inquirer';
 import emailRegex from 'email-regex';
+import { readFileSync } from 'fs';
 
 import createNodeJsModule from './createNodeJsModule';
 import IConfig from './IConfig';
+
+const packageJson = JSON.parse(
+  readFileSync('package.json', { encoding: 'utf8' })
+);
+const VERSION = packageJson.version;
 
 async function getLibType() {
   const answer = await inquirer.prompt([
@@ -319,7 +325,7 @@ export default function create(): void {
     program
       .name('create-es-lib')
       .description('Create Modern ES Library.')
-      .version('0.1.4', '-v, --version')
+      .version(VERSION, '-v, --version')
       .argument('[libName]')
       .action((libName) => {
         run(libName);
