@@ -1,20 +1,44 @@
-# create-node-lib
+# @open-tech-world/create-es-lib
 
 > Node.js CLI tool for creating modern ES libraries.
 
 ## Features
 
-- Creates CLI or Module Library
-- Bundles cjs and es module formats using [rollup](https://github.com/rollup/rollup)
-- Use your preferred package manager
-- Eslint configuration
-- Format using prettier
-- Git init
-- Choose open source license
+✔️ Zero-config to get started 🚀
+
+✔️ Flexible
+
+✔️ No lock-in framework
+
+✔️ Follows [Semantic Versioning 2.0.0](https://semver.org/)
+
+## Tech Stack
+
+✔️ [ESLint](https://eslint.org/)
+
+✔️ [Git](https://git-scm.com/)
+
+✔️ [Jest](https://jestjs.io/)
+
+✔️ [Prettier](https://prettier.io/)
+
+✔️ [Rollup](https://rollupjs.org/guide/en/)
+
+✔️ [Typescript](https://www.typescriptlang.org/)
+
+## Library Types
+
+🚧 Browser (WIP)
+
+🚧 Node.js CLI (WIP)
+
+✔️ Node.js Module
+
+🚧 React (WIP)
 
 ## Requirements
 
-- Node.js >= v10 LTS
+- Node.js ^12.22.0 || ^14.17.0 || >=16.0.0
 - Latest Npm or Yarn
 
 ## Usage
@@ -23,14 +47,17 @@
 # With npm
 $ npx @open-tech-world/create-es-lib your-lib-name
 
-# With yarn
+# With yarn classic
 $ yarn create @open-tech-world/es-lib your-lib-name
+
+# With yarn berry
+$ yarn dlx @open-tech-world/create-es-lib your-lib-name
 ```
 
 ## Getting Started
 
-Post creating a lib, follow the on-screen instructions to get started.
+Post creating a library, follow the on-screen instructions to get started.
 
 ## License
 
-MIT © [Thanga Ganapathy](https://github.com/ganapathy888)
+Copyright (c) [Thanga Ganapathy](https://github.com/Thanga-Ganapathy) (MIT License).
