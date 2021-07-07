@@ -18,6 +18,9 @@
     <% } %>
     "type": "module",
     "module": "lib/<%= pkgName %>.js",
+    "engines": {
+        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
+      },
     "scripts": {
         <% if (bundler && bundler === 'rollup') { %>
             "build": "rollup -c",

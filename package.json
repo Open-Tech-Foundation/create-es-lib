@@ -9,7 +9,7 @@
     "build:w": "rollup -c -w"
   },
   "engines": {
-    "node": ">=10"
+    "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
   },
   "bin": "cli.js",
   "files": [
