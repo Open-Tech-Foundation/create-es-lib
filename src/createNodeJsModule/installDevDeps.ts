@@ -2,24 +2,14 @@ import { writeFile } from 'fs/promises';
 import Path from 'path';
 
 import IConfig from '../IConfig';
+import getPkgManagerInstallCmd from '../utils/getPkgManagerInstallCmd';
 import subProcess from '../utils/subProcess';
-
-function getPkgManagerCmd(pkgManager: string): string {
-  const pkgManagerIDs: Record<string, string> = {
-    npm: 'npm install --save-dev',
-    'yarn-v2-nm': 'yarn add --dev',
-    'yarn-v2-pnp': 'yarn add --dev',
-    pnpm: 'pnpm add --save-dev',
-  };
-
-  return pkgManagerIDs[pkgManager];
-}
 
 export default async function installDevDeps(
   destPath: string,
   config: IConfig
 ): Promise<void> {
-  const cmd = getPkgManagerCmd(config.pkgManager);
+  const cmd = getPkgManagerInstallCmd(config.pkgManager);
   const deps = [
     'eslint',
     'prettier',

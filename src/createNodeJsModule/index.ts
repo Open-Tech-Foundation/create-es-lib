@@ -9,6 +9,7 @@ import installDevDeps from './installDevDeps';
 import getPkgNameWithScope from '../utils/getPkgNameWithScope';
 import commitToGit from './commitToGit';
 import getGitUrl from '../utils/getGitUrl';
+import getStarted from './getStarted';
 
 export default async function createNodeJsModule(
   config: IConfig
@@ -52,4 +53,6 @@ export default async function createNodeJsModule(
       throw error;
     }
   }
+
+  getStarted(config);
 }
