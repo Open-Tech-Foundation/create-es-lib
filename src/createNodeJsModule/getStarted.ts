@@ -11,13 +11,18 @@ export default function getStarted(config: IConfig): void {
   console.log('');
   console.log('Run the following commands to get started 🚀');
   console.log('');
-  console.log(chalk.blue(`\t$ cd ${config.libName}`));
+  console.log(chalk.blueBright(`\t$ cd ${config.libName}`));
+  console.log('');
   console.log(
-    chalk.blue(`\t$ ${getPkgManagerRunCmd(config.pkgManager)} build`)
+    chalk.blueBright(`\t$ ${getPkgManagerRunCmd(config.pkgManager)} build`)
   );
   console.log('\t If you enabled a bundler, then this will build your lib.');
-  console.log(chalk.blue(`\t$ ${getPkgManagerRunCmd(config.pkgManager)} test`));
+  console.log('');
+  console.log(
+    chalk.blueBright(`\t$ ${getPkgManagerRunCmd(config.pkgManager)} test`)
+  );
   console.log(
     '\t If you enabled a test runner, then this will run your tests.'
   );
+  console.log('');
 }
