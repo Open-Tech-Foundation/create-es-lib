@@ -9,7 +9,7 @@ export default async function commitToGit(
   await subProcess('git', ['checkout', '-b', 'main'], destPath);
   await subProcess(
     'git',
-    ['config', '--local', 'user.name', config.authorFullName],
+    ['config', '--local', 'user.name', `"${config.authorFullName}"`],
     destPath
   );
   await subProcess(
