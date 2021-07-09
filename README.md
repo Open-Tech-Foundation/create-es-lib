@@ -41,6 +41,10 @@
 - Node.js ^12.22.0 || ^14.17.0 || >=16.0.0
 - Latest Npm or Yarn
 
+## Install
+
+⚠️ You should not install this package locally or globally, and it is only used to run on the CLI.
+
 ## Usage
 
 ```bash
@@ -53,7 +57,7 @@ $ yarn create @open-tech-world/es-lib my-lib
 
 ## Troubleshooting
 
-<span style="color: red">Error: cannot create due to insufficient permissions.</span>
+❌ Error: cannot create due to insufficient permissions.
 
 You can fix the above error by giving `sudo` access to the command line and after library created, change the library folder owner using `sudo chown -R $USER:$USER my-lib`.
 
