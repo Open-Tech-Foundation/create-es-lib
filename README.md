@@ -4,11 +4,11 @@
 
 ## Features
 
-✔️ Zero-config to get started 🚀
+✔️ Zero-Config to Get Started 🚀
 
-✔️ Flexible
+✔️ Completely Customizable
 
-✔️ No lock-in framework
+✔️ No Lock-In Framework
 
 ✔️ Follows [Semantic Versioning 2.0.0](https://semver.org/)
 
