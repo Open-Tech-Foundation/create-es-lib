@@ -49,7 +49,7 @@
 
 ```bash
 # With npm
-$ npx @open-tech-world/create-es-lib my-lib
+$ npx @open-tech-world/create-es-lib@latest my-lib
 
 # With yarn
 $ yarn create @open-tech-world/es-lib my-lib
@@ -57,7 +57,7 @@ $ yarn create @open-tech-world/es-lib my-lib
 
 ## Troubleshooting
 
-❌ Error: cannot create due to insufficient permissions.
+❌ Error: Cannot create "/usr/local/bin/create-es-lib" due to insufficient permissions.
 
 You can fix the above error by giving `sudo` access to the command line and after library created, change the library folder owner using `sudo chown -R $USER:$USER my-lib`.
 
