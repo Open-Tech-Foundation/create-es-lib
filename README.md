@@ -1,5 +1,7 @@
 # @open-tech-world/create-es-lib
 
+[![Build](https://github.com/open-tech-world/create-es-lib/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-world/create-es-lib/actions/workflows/build.yml)
+
 > Node.js CLI tool for creating modern ES libraries.
 
 ## Features
