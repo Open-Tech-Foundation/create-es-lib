@@ -52,7 +52,7 @@
     "prettier": "^2.3.2"
   },
   "devDependencies": {
-    "@open-tech-world/rollup-plugin-clean": "^0.7.1",
+    "@open-tech-world/rollup-plugin-clean": "^0.11.0",
     "@rollup/plugin-typescript": "^8.2.1",
     "@types/ejs": "^3.0.6",
     "@types/inquirer": "^7.3.2",

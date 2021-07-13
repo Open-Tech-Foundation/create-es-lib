@@ -731,7 +731,7 @@ __metadata:
   resolution: "@open-tech-world/create-es-lib@workspace:."
   dependencies:
     "@open-tech-world/es-utils": ^0.1.0
-    "@open-tech-world/rollup-plugin-clean": ^0.7.1
+    "@open-tech-world/rollup-plugin-clean": ^0.11.0
     "@rollup/plugin-typescript": ^8.2.1
     "@types/ejs": ^3.0.6
     "@types/inquirer": ^7.3.2
@@ -769,14 +769,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@open-tech-world/rollup-plugin-clean@npm:^0.7.1":
-  version: 0.7.1
-  resolution: "@open-tech-world/rollup-plugin-clean@npm:0.7.1"
+"@open-tech-world/rollup-plugin-clean@npm:^0.11.0":
+  version: 0.11.0
+  resolution: "@open-tech-world/rollup-plugin-clean@npm:0.11.0"
   dependencies:
     del: ^6.0.0
     globby: ^11.0.3
     lodash.merge: ^4.6.2
-  checksum: 6801784ecadb8303e614c9ff137d115d4d54ab355cb05c06a16326989778d15ff9b0f0136dae3c4b6cc06bfd36d013bdce1a8d84226c54ca8d74834abd7c2938
+  checksum: 0f5f594b936df9d49dde65eac6ab01a4baff53899d41929d029301908d64bc0849e54e6ab4d48cec178d6fdd6af5d416a70cdf725460bc106181e833be3ad5d9
   languageName: node
   linkType: hard
 
