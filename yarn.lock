@@ -730,7 +730,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@open-tech-world/create-es-lib@workspace:."
   dependencies:
-    "@open-tech-world/es-utils": ^0.1.0
+    "@open-tech-world/es-utils": ^0.1.1
     "@open-tech-world/rollup-plugin-clean": ^0.11.0
     "@rollup/plugin-typescript": ^8.2.1
     "@types/ejs": ^3.0.6
@@ -762,10 +762,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@open-tech-world/es-utils@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@open-tech-world/es-utils@npm:0.1.0"
-  checksum: 25fd890b28b8eeee2f4dfce60ab1df24f217cd970754bee6862d218c7de17ef5f5297cc28400cbc56a8849f18736d9faffd749e42674a8915916c933cad1098d
+"@open-tech-world/es-utils@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@open-tech-world/es-utils@npm:0.1.1"
+  checksum: ec1175116d305903e70a3223dd0880d64355699540b0d87ca27748402bb5ff1fa49c9ff0103308e6a7517d349dd61a0744d5260f0ca755b46e3cf98f42e42f4d
   languageName: node
   linkType: hard
 

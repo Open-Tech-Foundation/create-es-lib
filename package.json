@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/open-tech-world/create-node-lib#readme",
   "dependencies": {
-    "@open-tech-world/es-utils": "^0.1.0",
+    "@open-tech-world/es-utils": "^0.1.1",
     "camelcase": "^6.2.0",
     "chalk": "^4.1.1",
     "commander": "^8.0.0",
