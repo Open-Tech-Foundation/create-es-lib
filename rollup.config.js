@@ -33,5 +33,6 @@ export default {
     'util',
     'fast-glob',
     'fs',
+    '@open-tech-world/es-utils',
   ],
 };

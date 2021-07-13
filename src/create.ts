@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { Command } from 'commander';
 import inquirer from 'inquirer';
-import emailRegex from 'email-regex';
+import { isEmail } from '@open-tech-world/es-utils';
 import { readFileSync } from 'fs';
 import Path from 'path';
 
@@ -265,7 +265,7 @@ async function getAuthorEmail() {
       message: 'Enter author email',
       default: '',
       validate: (input) => {
-        if (emailRegex({ exact: true }).test(input)) return true;
+        if (isEmail(input)) return true;
         return 'Please enter a valid email address';
       },
     },
