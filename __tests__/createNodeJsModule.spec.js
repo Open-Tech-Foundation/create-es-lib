@@ -24,7 +24,11 @@ const baseConfig = {
 };
 
 beforeAll(() => {
-  rmdirSync(path.join(tempDir, 'my-lib'), { recursive: true });
+  try {
+    rmdirSync(myLibPath, { recursive: true });
+  } catch (error) {
+    return;
+  }
 });
 
 beforeEach(() => {
@@ -34,7 +38,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  rmdirSync(path.join(tempDir, 'my-lib'), { recursive: true });
+  rmdirSync(myLibPath, { recursive: true });
 });
 
 describe('createNodeJsModule', () => {
