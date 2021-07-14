@@ -47,94 +47,102 @@ describe('createNodeJsModule', () => {
       ...baseConfig,
       pkgManager: 'npm',
     };
-    await createNodeJsModule(config);
-    expect(ConsoleError).not.toHaveBeenCalled();
-    expect(existsSync(myLibPath)).toBeTruthy();
-    const files = fg.sync(['my-lib/**', '!my-lib/node_modules'], {
-      dot: true,
-      cwd: tempDir,
+    return createNodeJsModule(config).then(() => {
+      expect(ConsoleError).not.toHaveBeenCalled();
+      expect(existsSync(myLibPath)).toBeTruthy();
+      const files = fg.sync(['my-lib/**', '!my-lib/node_modules'], {
+        dot: true,
+        cwd: tempDir,
+      });
+      expect(files.length).toBe(8);
+      expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'node_modules'))).toBeTruthy();
+      expect(
+        existsSync(path.join(myLibPath, 'package-lock.json'))
+      ).toBeTruthy();
     });
-    expect(files.length).toBe(8);
-    expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
-    expect(existsSync(path.join(myLibPath, 'node_modules'))).toBeTruthy();
-    expect(existsSync(path.join(myLibPath, 'package-lock.json'))).toBeTruthy();
-  }, 50000);
+  });
 
   it('creates a js lib with yarn v2 node_modules', async () => {
     const config = {
       ...baseConfig,
       pkgManager: 'yarn-v2-nm',
     };
-    await createNodeJsModule(config);
-    expect(ConsoleError).not.toHaveBeenCalled();
-    expect(existsSync(myLibPath)).toBeTruthy();
-    const files = fg.sync(
-      ['my-lib/**', '!my-lib/.yarn', '!my-lib/node_modules'],
-      {
-        dot: true,
-        cwd: tempDir,
-      }
-    );
-    expect(files.length).toBe(9);
-    expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
-    expect(existsSync(path.join(myLibPath, 'node_modules'))).toBeTruthy();
-    expect(existsSync(path.join(myLibPath, 'yarn.lock'))).toBeTruthy();
-    expect(existsSync(path.join(myLibPath, 'package-lock.json'))).toBeFalsy();
-  }, 50000);
+    return createNodeJsModule(config).then(() => {
+      expect(ConsoleError).not.toHaveBeenCalled();
+      expect(existsSync(myLibPath)).toBeTruthy();
+      const files = fg.sync(
+        ['my-lib/**', '!my-lib/.yarn', '!my-lib/node_modules'],
+        {
+          dot: true,
+          cwd: tempDir,
+        }
+      );
+      expect(files.length).toBe(9);
+      expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'node_modules'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'yarn.lock'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'package-lock.json'))).toBeFalsy();
+    });
+  });
 
   it('creates a js lib with yarn v2 pnp', async () => {
     const config = {
       ...baseConfig,
       pkgManager: 'yarn-v2-pnp',
     };
-    await createNodeJsModule(config);
-    expect(ConsoleError).not.toHaveBeenCalled();
-    expect(existsSync(myLibPath)).toBeTruthy();
-    const files = fg.sync(['my-lib/**', '!my-lib/.yarn'], {
-      dot: true,
-      cwd: tempDir,
+
+    return createNodeJsModule(config).then(() => {
+      expect(ConsoleError).not.toHaveBeenCalled();
+      expect(existsSync(myLibPath)).toBeTruthy();
+      const files = fg.sync(['my-lib/**', '!my-lib/.yarn'], {
+        dot: true,
+        cwd: tempDir,
+      });
+      expect(files.length).toBe(10);
+      expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'node_modules'))).toBeFalsy();
+      expect(existsSync(path.join(myLibPath, 'yarn.lock'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'package-lock.json'))).toBeFalsy();
+      expect(existsSync(path.join(myLibPath, '.pnp.cjs'))).toBeTruthy();
     });
-    expect(files.length).toBe(10);
-    expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
-    expect(existsSync(path.join(myLibPath, 'node_modules'))).toBeFalsy();
-    expect(existsSync(path.join(myLibPath, 'yarn.lock'))).toBeTruthy();
-    expect(existsSync(path.join(myLibPath, 'package-lock.json'))).toBeFalsy();
-    expect(existsSync(path.join(myLibPath, '.pnp.cjs'))).toBeTruthy();
-  }, 50000);
+  });
 
   it('creates a js lib with Apache-2.0 license', async () => {
     const config = {
       ...baseConfig,
       lic: 'Apache-2.0',
     };
-    await createNodeJsModule(config);
-    expect(ConsoleError).not.toHaveBeenCalled();
-    expect(existsSync(myLibPath)).toBeTruthy();
-    const files = fg.sync(['my-lib/**'], {
-      dot: true,
-      cwd: tempDir,
+    return createNodeJsModule(config).then(() => {
+      expect(ConsoleError).not.toHaveBeenCalled();
+      expect(existsSync(myLibPath)).toBeTruthy();
+      const files = fg.sync(['my-lib/**'], {
+        dot: true,
+        cwd: tempDir,
+      });
+      expect(files.length).toBe(8);
+      expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'LICENSE'))).toBeTruthy();
     });
-    expect(files.length).toBe(8);
-    expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
-    expect(existsSync(path.join(myLibPath, 'LICENSE'))).toBeTruthy();
-  }, 50000);
+  });
 
   it('creates a js lib with MIT license', async () => {
     const config = {
       ...baseConfig,
       lic: 'MIT',
     };
-    await createNodeJsModule(config);
-    expect(ConsoleError).not.toHaveBeenCalled();
-    expect(existsSync(myLibPath)).toBeTruthy();
-    const files = fg.sync(['my-lib/**'], {
-      dot: true,
-      cwd: tempDir,
+    return createNodeJsModule(config).then(() => {
+      expect(ConsoleError).not.toHaveBeenCalled();
+      expect(existsSync(myLibPath)).toBeTruthy();
+      const files = fg.sync(['my-lib/**'], {
+        dot: true,
+        cwd: tempDir,
+      });
+      expect(files.length).toBe(8);
+      expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'LICENSE'))).toBeTruthy();
     });
-    expect(files.length).toBe(8);
-    expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
-    expect(existsSync(path.join(myLibPath, 'LICENSE'))).toBeTruthy();
-  }, 50000);
+  });
 
   it('creates a ts lib with rollup bundler', async () => {
     const config = {
@@ -144,20 +152,21 @@ describe('createNodeJsModule', () => {
       bundler: 'rollup',
       buildDir: 'lib',
     };
-    await createNodeJsModule(config);
-    expect(ConsoleError).not.toHaveBeenCalled();
-    expect(existsSync(myLibPath)).toBeTruthy();
-    const files = fg.sync(
-      ['my-lib/**', '!my-lib/node_modules', '!my-lib/.yarn'],
-      {
-        dot: true,
-        cwd: tempDir,
-      }
-    );
-    expect(files.length).toBe(10);
-    expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();
-    expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
-  }, 50000);
+    return createNodeJsModule(config).then(() => {
+      expect(ConsoleError).not.toHaveBeenCalled();
+      expect(existsSync(myLibPath)).toBeTruthy();
+      const files = fg.sync(
+        ['my-lib/**', '!my-lib/node_modules', '!my-lib/.yarn'],
+        {
+          dot: true,
+          cwd: tempDir,
+        }
+      );
+      expect(files.length).toBe(10);
+      expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
+    });
+  });
 
   it('creates a ts lib with rollup & jest', async () => {
     const config = {
@@ -169,23 +178,24 @@ describe('createNodeJsModule', () => {
       buildDir: 'lib',
       testRunner: 'jest',
     };
-    await createNodeJsModule(config);
-    expect(ConsoleError).not.toHaveBeenCalled();
-    expect(existsSync(myLibPath)).toBeTruthy();
-    const files = fg.sync(
-      ['my-lib/**', '!my-lib/node_modules', '!my-lib/.yarn'],
-      {
-        dot: true,
-        cwd: tempDir,
-      }
-    );
-    expect(files.length).toBe(11);
-    expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();
-    expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
-    expect(
-      existsSync(path.join(myLibPath, '__tests__/myLib.spec.js'))
-    ).toBeTruthy();
-  }, 50000);
+    return createNodeJsModule(config).then(() => {
+      expect(ConsoleError).not.toHaveBeenCalled();
+      expect(existsSync(myLibPath)).toBeTruthy();
+      const files = fg.sync(
+        ['my-lib/**', '!my-lib/node_modules', '!my-lib/.yarn'],
+        {
+          dot: true,
+          cwd: tempDir,
+        }
+      );
+      expect(files.length).toBe(11);
+      expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
+      expect(
+        existsSync(path.join(myLibPath, '__tests__/myLib.spec.js'))
+      ).toBeTruthy();
+    });
+  });
 
   it('creates a js lib & add files to git with commit msg', async () => {
     const config = {
@@ -195,14 +205,15 @@ describe('createNodeJsModule', () => {
       gitProviderUsername: 'ganapathy888',
       commitMsg: 'Initial commit',
     };
-    await createNodeJsModule(config);
-    expect(ConsoleError).not.toHaveBeenCalled();
-    expect(existsSync(myLibPath)).toBeTruthy();
-    const files = fg.sync(['my-lib/**', '!my-lib/.git'], {
-      dot: true,
-      cwd: tempDir,
+    return createNodeJsModule(config).then(() => {
+      expect(ConsoleError).not.toHaveBeenCalled();
+      expect(existsSync(myLibPath)).toBeTruthy();
+      const files = fg.sync(['my-lib/**', '!my-lib/.git'], {
+        dot: true,
+        cwd: tempDir,
+      });
+      expect(files.length).toBe(7);
+      expect(existsSync(path.join(myLibPath, '.git'))).toBeTruthy();
     });
-    expect(files.length).toBe(7);
-    expect(existsSync(path.join(myLibPath, '.git'))).toBeTruthy();
-  }, 50000);
+  });
 });
