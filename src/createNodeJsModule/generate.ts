@@ -1,10 +1,15 @@
 import fg from 'fast-glob';
 import Path from 'path';
-import { mkdir, readFile, writeFile } from 'fs/promises';
+import fs from 'fs';
+import { promisify } from 'util';
 
 import IConfig from '../IConfig';
 import compile from '../utils/compile';
 import prettify from '../utils/prettify';
+
+const readFile = promisify(fs.readFile);
+const mkdir = promisify(fs.mkdir);
+const writeFile = promisify(fs.writeFile);
 
 export default async function generate(
   templatePath: string,
