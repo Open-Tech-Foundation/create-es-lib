@@ -54,5 +54,5 @@ export default async function createNodeJsModule(
     }
   }
 
-  getStarted(config);
+  await getStarted(config);
 }
