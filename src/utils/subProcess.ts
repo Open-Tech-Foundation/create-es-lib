@@ -1,11 +1,17 @@
-import { spawn } from 'child_process';
+import { spawn, ChildProcess } from 'child_process';
 
 export default async function subProcess(
   cmd: string,
   args: string[],
   cwd: string
 ): Promise<void> {
-  const s = spawn(cmd, args, { cwd, shell: true, stdio: 'ignore' });
+  let sp: ChildProcess;
+
+  if (process.platform === 'win32') {
+    sp = spawn(cmd, args, { cwd, shell: 'cmd.exe', stdio: 'ignore' });
+  } else {
+    sp = spawn(cmd, args, { cwd, shell: true, stdio: 'ignore' });
+  }
 
   return new Promise((resolve, reject) => {
     // if (s.stdout) {
@@ -18,7 +24,7 @@ export default async function subProcess(
     //     console.log(chunk.toString());
     //   });
     // }
-    s.on('close', (code) => {
+    sp.on('close', (code) => {
       if (code && code > 0) {
         reject(code);
       }
