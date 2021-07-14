@@ -21,7 +21,6 @@ export default {
     'chalk',
     'inquirer',
     'path',
-    'fs/promises',
     'ejs',
     'ora',
     'camelcase',

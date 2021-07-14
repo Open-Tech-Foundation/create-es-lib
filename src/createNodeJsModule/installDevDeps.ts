@@ -1,9 +1,12 @@
-import { writeFile } from 'fs/promises';
+import fs from 'fs';
+import { promisify } from 'util';
 import Path from 'path';
 
 import IConfig from '../IConfig';
 import getPkgManagerInstallCmd from '../utils/getPkgManagerInstallCmd';
 import subProcess from '../utils/subProcess';
+
+const writeFile = promisify(fs.writeFile);
 
 export default async function installDevDeps(
   destPath: string,
