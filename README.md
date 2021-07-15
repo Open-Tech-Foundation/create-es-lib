@@ -2,7 +2,7 @@
 
 [![Linux Build](https://github.com/open-tech-world/create-es-lib/actions/workflows/linux_build.yml/badge.svg)](https://github.com/open-tech-world/create-es-lib/actions/workflows/linux_build.yml) [![macOS Build](https://github.com/open-tech-world/create-es-lib/actions/workflows/macos_build.yml/badge.svg)](https://github.com/open-tech-world/create-es-lib/actions/workflows/macos_build.yml) [![Windows Build](https://github.com/open-tech-world/create-es-lib/actions/workflows/windows_build.yml/badge.svg)](https://github.com/open-tech-world/create-es-lib/actions/workflows/windows_build.yml)
 
-> Node.js CLI tool for creating modern ES libraries.
+> Node.js CLI tool for creating modern ECMAScript libraries.
 
 ## Features
 
