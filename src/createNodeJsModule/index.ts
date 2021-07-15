@@ -3,14 +3,14 @@ import ora from 'ora';
 import camelcase from 'camelcase';
 
 import IConfig from '../IConfig';
-import generate from './generate';
+import generate from '../common/generate';
 import getCurrentDir from '../utils/getCurrentDir';
 import installDevDeps from './installDevDeps';
 import getPkgNameWithScope from '../utils/getPkgNameWithScope';
-import commitToGit from './commitToGit';
+import commitToGit from '../common/commitToGit';
 import getGitUrl from '../utils/getGitUrl';
 import getStarted from './getStarted';
-import configTS from './configTS';
+import configTS from '../common/configTS';
 
 export default async function createNodeJsModule(
   config: IConfig
