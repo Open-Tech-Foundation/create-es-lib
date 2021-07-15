@@ -4,13 +4,13 @@ import typescript from '@rollup/plugin-typescript';
 
 export default {
   input: '<%= ts ? 'src/index.ts' : 'src/index.js' %>',
-  output: {
-    file: <%- `'${buildDir}/${pkgName}.js'` %>,
+  output: [{
+    dir: <%- `'./${buildDir}'` %>,
     format: 'esm',
-  },
+  }],
   plugins: [
     <% if (ts) { %>
-      typescript()
+      typescript({ tsconfig: './tsconfig.json' })
     <% } %>
   ],
   external: [],
