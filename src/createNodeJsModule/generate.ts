@@ -6,6 +6,7 @@ import { promisify } from 'util';
 import IConfig from '../IConfig';
 import compile from '../utils/compile';
 import prettify from '../utils/prettify';
+import normalizePath from 'normalize-path';
 
 const readFile = promisify(fs.readFile);
 const mkdir = promisify(fs.mkdir);
@@ -16,12 +17,23 @@ export default async function generate(
   destPath: string,
   config: IConfig
 ): Promise<void> {
-  const filePaths = await fg([`${templatePath}/**`], { dot: true });
+  const filePaths = await fg([`${normalizePath(templatePath)}/**`], {
+    dot: true,
+  });
 
   for await (const f of filePaths) {
-    const buffer = await readFile(f);
-    const fileExt = Path.extname(f);
-    let destFilePath = Path.join(destPath, f.replace(templatePath, ''));
+    let templateFile = f;
+
+    if (process.platform === 'win32') {
+      templateFile = f.replace(/\//g, '\\');
+    }
+
+    const buffer = await readFile(templateFile);
+    const fileExt = Path.extname(templateFile);
+    let destFilePath = Path.join(
+      destPath,
+      templateFile.replace(templatePath, '')
+    );
     let data;
 
     if (fileExt === '.ejs') {

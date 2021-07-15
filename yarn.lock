@@ -736,6 +736,7 @@ __metadata:
     "@types/ejs": ^3.0.6
     "@types/inquirer": ^7.3.2
     "@types/jest": ^26.0.23
+    "@types/normalize-path": ^3.0.0
     "@types/ora": ^3.2.0
     "@types/prettier": ^2.3.1
     "@typescript-eslint/eslint-plugin": ^4.28.1
@@ -752,6 +753,7 @@ __metadata:
     fast-glob: ^3.2.6
     inquirer: ^8.1.1
     jest: ^27.0.6
+    normalize-path: ^3.0.0
     ora: ^5.4.1
     prettier: ^2.3.2
     rollup: ^2.52.7
@@ -978,6 +980,13 @@ __metadata:
   version: 15.12.5
   resolution: "@types/node@npm:15.12.5"
   checksum: 42485de7a0b7277ddaae25b36ab4174fc8f23e8a5de9ccaedd002ecec17135c48227a5e09088d181c2bc34fe6b2064feb4a468954372076fd8addac2f72dad7e
+  languageName: node
+  linkType: hard
+
+"@types/normalize-path@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@types/normalize-path@npm:3.0.0"
+  checksum: 1cff3a34d0c0c37bca26a60e19407783fe85cde0af0ccfe7773001019c6339927460127c043163638d04f54415d165766173d9881ad8e7eb7870e4be2657ee45
   languageName: node
   linkType: hard
 

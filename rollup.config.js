@@ -33,5 +33,6 @@ export default {
     'fast-glob',
     'fs',
     '@open-tech-world/es-utils',
+    'normalize-path',
   ],
 };
