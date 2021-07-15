@@ -10,6 +10,7 @@ import getPkgNameWithScope from '../utils/getPkgNameWithScope';
 import commitToGit from './commitToGit';
 import getGitUrl from '../utils/getGitUrl';
 import getStarted from './getStarted';
+import configTS from './configTS';
 
 export default async function createNodeJsModule(
   config: IConfig
@@ -39,6 +40,17 @@ export default async function createNodeJsModule(
       depsSpinner.succeed(`Dev dependencies installed`);
     } catch (error) {
       depsSpinner.fail('Failed to install dev dependencies');
+      throw error;
+    }
+  }
+
+  if (config.pkgManager && config.ts) {
+    const depsSpinner = ora('Initializing typescript configuration').start();
+    try {
+      await configTS(config, destPath);
+      depsSpinner.succeed(`Initialized typescript configuration`);
+    } catch (error) {
+      depsSpinner.fail('Failed initialize typescript configuration');
       throw error;
     }
   }

@@ -2,11 +2,11 @@ import fg from 'fast-glob';
 import Path from 'path';
 import fs from 'fs';
 import { promisify } from 'util';
+import normalizePath from 'normalize-path';
 
 import IConfig from '../IConfig';
 import compile from '../utils/compile';
 import prettify from '../utils/prettify';
-import normalizePath from 'normalize-path';
 
 const readFile = promisify(fs.readFile);
 const mkdir = promisify(fs.mkdir);
