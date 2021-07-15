@@ -27,7 +27,12 @@
     "lib",
     "library",
     "scaffold",
-    "cli"
+    "cli",
+    "es",
+    "js",
+    "react",
+    "browser",
+    "create"
   ],
   "author": {
     "name": "Thanga Ganapathy",
