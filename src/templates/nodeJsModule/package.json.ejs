@@ -28,7 +28,7 @@
             "build:w": "rollup -c -w",         
         <% } %>
         <% if (testRunner === 'jest') { %>
-            "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+            "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
         <% } else { %>
              "test": "echo \"Error: no test specified\" && exit 1"
         <% } %>

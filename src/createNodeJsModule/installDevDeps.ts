@@ -54,7 +54,7 @@ export default async function installDevDeps(
   }
 
   if (config.testRunner && config.testRunner === 'jest') {
-    deps.push('jest', '@types/jest', 'eslint-plugin-jest');
+    deps.push('jest', '@types/jest', 'eslint-plugin-jest', 'cross-env');
   }
 
   await subProcess(cmd, deps, destPath);
