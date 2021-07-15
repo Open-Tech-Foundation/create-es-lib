@@ -14,6 +14,7 @@ export default async function getStarted(config: IConfig): Promise<void> {
     console.log('');
     console.log(chalk.blueBright(`\t$ cd ${config.libName}`));
     console.log('\t - Change directory');
+    console.log('');
     console.log(
       chalk.blueBright(`\t$ ${getPkgManagerRunCmd(config.pkgManager)} build`)
     );

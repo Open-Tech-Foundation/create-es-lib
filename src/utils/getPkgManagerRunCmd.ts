@@ -6,5 +6,5 @@ export default function getPkgManagerRunCmd(pkgManager: string): string {
     pnpm: 'pnpm run',
   };
 
-  return pkgManagerIDs[pkgManager];
+  return pkgManager ? pkgManagerIDs[pkgManager] : 'npm run';
 }
