@@ -17,6 +17,7 @@
           },
     <% } %>
     "type": "module",
+    "main": "./<%= buildDir %>/<%= pkgName %>.js",
     "exports": { ".": "./<%= buildDir %>/<%= pkgName %>.js" },
     "engines": {
         "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
