@@ -179,7 +179,7 @@ describe('createNodeJsModule', () => {
           cwd: tempDir,
         }
       );
-      expect(files.length).toBe(10);
+      expect(files.length).toBe(11);
       expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
     },
@@ -208,7 +208,7 @@ describe('createNodeJsModule', () => {
           cwd: tempDir,
         }
       );
-      expect(files.length).toBe(11);
+      expect(files.length).toBe(12);
       expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
       expect(
