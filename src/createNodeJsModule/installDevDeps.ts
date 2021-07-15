@@ -6,7 +6,7 @@ import IConfig from '../IConfig';
 import getPkgManagerInstallCmd from '../utils/getPkgManagerInstallCmd';
 import subProcess from '../utils/subProcess';
 
-const writeFile = promisify(fs.writeFile);
+const appendFile = promisify(fs.appendFile);
 
 export default async function installDevDeps(
   destPath: string,
@@ -34,14 +34,14 @@ export default async function installDevDeps(
   }
 
   if (config.pkgManager === 'yarn-v2-nm') {
-    await writeFile(
+    await appendFile(
       Path.join(destPath, '.yarnrc.yml'),
       'nodeLinker: node-modules'
     );
   }
 
   if (config.pkgManager === 'yarn-v2-pnp') {
-    await writeFile(Path.join(destPath, '.yarnrc.yml'), 'nodeLinker: pnp');
+    await appendFile(Path.join(destPath, '.yarnrc.yml'), 'nodeLinker: pnp');
   }
 
   if (config.bundler && config.bundler === 'rollup') {
