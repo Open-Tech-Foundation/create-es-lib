@@ -49,12 +49,14 @@
 
 ## Usage
 
+Using npm
 ```bash
-# With npm
-$ npx @open-tech-world/create-es-lib@latest my-lib
+npx @open-tech-world/create-es-lib@latest my-lib
+```
+Using Yarn
 
-# With yarn
-$ yarn create @open-tech-world/es-lib my-lib
+```bash
+yarn create @open-tech-world/es-lib my-lib
 ```
 
 ## Troubleshooting
