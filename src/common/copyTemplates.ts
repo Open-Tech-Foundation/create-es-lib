@@ -12,12 +12,13 @@ const readFile = promisify(fs.readFile);
 const mkdir = promisify(fs.mkdir);
 const writeFile = promisify(fs.writeFile);
 
-export default async function generate(
+export default async function copyTemplates(
   templatePath: string,
   destPath: string,
-  config: IConfig
+  config: IConfig,
+  ignore: string[]
 ): Promise<void> {
-  const filePaths = await fg([`${normalizePath(templatePath)}/**`], {
+  const filePaths = await fg([`${normalizePath(templatePath)}/**`, ...ignore], {
     dot: true,
   });
 

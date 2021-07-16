@@ -3,7 +3,7 @@ import ora from 'ora';
 import camelcase from 'camelcase';
 
 import IConfig from '../IConfig';
-import generate from '../common/generate';
+import copyTemplates from '../common/copyTemplates';
 import getCurrentDir from '../utils/getCurrentDir';
 import installDevDeps from './installDevDeps';
 import getPkgNameWithScope from '../utils/getPkgNameWithScope';
@@ -26,7 +26,7 @@ export default async function createNodeJsModule(
   const copySpinner = ora('Creating lib files from templates').start();
 
   try {
-    await generate(templatePath, destPath, config);
+    await copyTemplates(templatePath, destPath, config, []);
     copySpinner.succeed('Created lib files from templates');
   } catch (error) {
     copySpinner.fail('Error in creating files from templates');
