@@ -1,16 +1,11 @@
 import fg from 'fast-glob';
 import Path from 'path';
-import fs from 'fs';
-import { promisify } from 'util';
 import normalizePath from 'normalize-path';
 
 import IConfig from '../IConfig';
 import compile from '../utils/compile';
 import prettify from '../utils/prettify';
-
-const readFile = promisify(fs.readFile);
-const mkdir = promisify(fs.mkdir);
-const writeFile = promisify(fs.writeFile);
+import { mkdir, readFile, writeFile } from '../utils/fs';
 
 export default async function copyTemplates(
   templatePath: string,
@@ -70,21 +65,6 @@ export default async function copyTemplates(
     );
     let data = compile(buffer, config);
     const destFilePath = Path.join(destPath, 'rollup.config.js');
-    data = prettify(data.toString(), destFilePath);
-    await writeFile(destFilePath, data);
-  }
-
-  if (config.testRunner && config.testRunner === 'jest') {
-    await mkdir(Path.join(destPath, '__tests__'));
-    const buffer = await readFile(
-      Path.join(templatePath, '..', 'shared', 'jest.ejs')
-    );
-    let data = compile(buffer, config);
-    const destFilePath = Path.join(
-      destPath,
-      '__tests__',
-      config.pkgName + '.spec.js'
-    );
     data = prettify(data.toString(), destFilePath);
     await writeFile(destFilePath, data);
   }
