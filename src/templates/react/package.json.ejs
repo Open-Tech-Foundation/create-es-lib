@@ -1,0 +1,43 @@
+{
+    "name": "<%= pkgNameWithScope %>",
+    "version": "0.1.0",
+    "description": "",
+    "keywords": [],
+    "author": {
+        name: "<%= authorFullName %>",
+        email: "<%= authorEmail %>",
+        url: ""
+    },
+    "license": "<%= lic ? lic : 'UNLICENSED' %>",
+    "homepage": "",
+    <% if (gitProvider) { %>
+        "repository": {
+            "type": "git",
+            "url": "git+<%= gitUrl %>"
+          },
+    <% } %>
+    "type": "module",
+    "main": "./<%= buildDir %>/index.js",
+    "module": "./<%= buildDir %>/index.js",
+    "types": "./<%= buildDir %>/index.d.ts",
+    "exports": { ".": "./<%= buildDir %>/index.js" },
+    "engines": {
+        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
+      },
+    "scripts": {
+        <% if (bundler && bundler === 'rollup') { %>
+            "build": "rollup -c",
+            "build:w": "rollup -c -w",         
+        <% } %>
+        <% if (testRunner === 'jest') { %>
+            "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
+        <% } else { %>
+             "test": "echo \"Error: no test specified\" && exit 1"
+        <% } %>
+    },
+    "files": [
+    <% if (buildDir) { %>
+     "<%= buildDir %>"
+    <% } %>
+    ]
+}

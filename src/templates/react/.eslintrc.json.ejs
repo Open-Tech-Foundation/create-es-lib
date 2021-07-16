@@ -1,0 +1,31 @@
+{
+  "env": {
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    <% if (ts) { -%>
+    "plugin:@typescript-eslint/recommended",
+    <% } -%>
+    <% if (testRunner === 'jest') { -%>
+    "plugin:jest/recommended",
+    <% } -%>
+    "plugin:prettier/recommended"
+  ],
+  <% if (ts) { -%>
+  "parser": "@typescript-eslint/parser",
+  <% } -%>
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  <% if (ts) { -%>
+  "plugins": ["@typescript-eslint", "prettier"],
+  <% } else { -%>
+  "plugins": ["prettier"],
+  <% } -%>
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}

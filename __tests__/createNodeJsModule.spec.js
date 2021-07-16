@@ -18,7 +18,7 @@ const baseConfig = {
   gitProvider: null,
   lic: null,
   bundler: null,
-  buildDir: null,
+  buildDir: 'lib',
   testRunner: null,
   year: 2021,
 };
