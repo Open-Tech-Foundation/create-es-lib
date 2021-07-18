@@ -1,6 +1,6 @@
 import Path from 'path';
 import ora from 'ora';
-import camelcase from 'camelcase';
+import { camelCase } from '@open-tech-world/es-utils';
 
 import IConfig from '../IConfig';
 import generate from './generate';
@@ -15,7 +15,7 @@ import configTS from '../common/configTS';
 export default async function createReactLib(config: IConfig): Promise<void> {
   config = {
     ...config,
-    pkgName: camelcase(config.libName),
+    pkgName: camelCase(config.libName),
     pkgNameWithScope: getPkgNameWithScope(config.libName, config.pkgScope),
     gitUrl: getGitUrl(config),
   };

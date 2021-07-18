@@ -23,7 +23,6 @@ export default {
     'path',
     'ejs',
     'ora',
-    'camelcase',
     'prettier',
     'email-regex',
     'commander',

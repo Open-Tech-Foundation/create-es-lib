@@ -1,9 +1,8 @@
 import Path from 'path';
 import ora from 'ora';
-import camelcase from 'camelcase';
+import { camelCase } from '@open-tech-world/es-utils';
 
 import IConfig from '../IConfig';
-import copyTemplates from '../common/copyTemplates';
 import getCurrentDir from '../utils/getCurrentDir';
 import installDevDeps from './installDevDeps';
 import getPkgNameWithScope from '../utils/getPkgNameWithScope';
@@ -11,13 +10,14 @@ import commitToGit from '../common/commitToGit';
 import getGitUrl from '../utils/getGitUrl';
 import getStarted from './getStarted';
 import configTS from '../common/configTS';
+import generate from './generate';
 
 export default async function createNodeJsModule(
   config: IConfig
 ): Promise<void> {
   config = {
     ...config,
-    pkgName: camelcase(config.libName),
+    pkgName: camelCase(config.libName),
     pkgNameWithScope: getPkgNameWithScope(config.libName, config.pkgScope),
     gitUrl: getGitUrl(config),
   };
@@ -26,7 +26,7 @@ export default async function createNodeJsModule(
   const copySpinner = ora('Creating lib files from templates').start();
 
   try {
-    await copyTemplates(templatePath, destPath, config, []);
+    await generate(templatePath, destPath, config);
     copySpinner.succeed('Created lib files from templates');
   } catch (error) {
     copySpinner.fail('Error in creating files from templates');
