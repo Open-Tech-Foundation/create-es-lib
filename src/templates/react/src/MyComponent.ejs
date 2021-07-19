@@ -12,7 +12,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-<% } %>
+<% } -%>
 <% if (lic === 'GPL-3.0-or-later') { %>
 // Copyright (C) <%= year %>  <%= authorFullName %> 
 
@@ -29,16 +29,17 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-<% } %>
+<% } -%>
 <% if (ts) { %>
 import * as React from 'react'
 
 interface IProps {
   thing: string;
 }
-<% } %>
- 
-export default function MyComponent(<%= ts ? 'props: IProps' : 'props' %>)<%= ts ? ': React.ReactNode' : '' %> {
+
+<% } -%>
+function <%= componentName %>(<%= ts ? 'props: IProps' : 'props' %>)<%= ts ? ': React.ReactNode' : '' %> {
   return <div>Hello {props.thing}!</div>;
 }
-    
+
+export default <%= componentName %>;

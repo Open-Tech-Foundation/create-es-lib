@@ -1,6 +1,6 @@
 import Path from 'path';
 import ora from 'ora';
-import { camelCase } from '@open-tech-world/es-utils';
+import { camelCase, pascalCase } from '@open-tech-world/es-utils';
 
 import IConfig from '../IConfig';
 import generate from './generate';
@@ -12,12 +12,13 @@ import getGitUrl from '../utils/getGitUrl';
 import getStarted from './getStarted';
 import configTS from '../common/configTS';
 
-export default async function createReactLib(config: IConfig): Promise<void> {
+async function createReactLib(config: IConfig): Promise<void> {
   config = {
     ...config,
     pkgName: camelCase(config.libName),
     pkgNameWithScope: getPkgNameWithScope(config.libName, config.pkgScope),
     gitUrl: getGitUrl(config),
+    componentName: pascalCase(config.libName),
   };
   const templatePath = Path.join(getCurrentDir(), 'templates', 'react');
   const destPath = Path.join(process.cwd(), config.libName);
@@ -66,3 +67,5 @@ export default async function createReactLib(config: IConfig): Promise<void> {
 
   await getStarted(config);
 }
+
+export default createReactLib;

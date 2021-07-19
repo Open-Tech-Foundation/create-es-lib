@@ -17,4 +17,5 @@ export default interface IConfig {
   commitMsg: string;
   gitUrl: string | null;
   gitProviderUsername: string | null;
+  componentName?: string;
 }
