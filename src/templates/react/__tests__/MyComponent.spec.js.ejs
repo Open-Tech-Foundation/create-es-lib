@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-import { MyComponent } from '../<%= buildDir -%>/index.js';
+import { <%= componentName %> } from '../<%= buildDir -%>/index.js';
 
-describe('<%= pkgName %>', () => {
+describe('<%= componentName %>', () => {
     it('renders a div with text', () => {
-        render(<MyComponent thing="World" />)
+        render(<<%= componentName %> thing="World" />)
         expect(screen.getByText('Hello World!')).toBeInTheDocument();
     })
 })

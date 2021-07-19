@@ -26,8 +26,8 @@
       },
     "scripts": {
         <% if (bundler && bundler === 'rollup') { %>
+            "start": "cross-env NODE_ENV=development rollup -c -w",
             "build": "rollup -c",
-            "build:w": "rollup -c -w",         
         <% } %>
         <% if (testRunner === 'jest') { %>
             "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
@@ -39,5 +39,17 @@
     <% if (buildDir) { %>
      "<%= buildDir %>"
     <% } %>
-    ]
+    ],
+    "browserslist": {
+        "production": [
+          "last 2 chrome versions",
+          "last 2 edge versions",
+          "last 2 firefox versions",
+          "last 2 safari versions",
+          "maintained node versions"
+        ],
+        "development": [
+          "current node"
+        ]
+      }
 }

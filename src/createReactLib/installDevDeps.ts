@@ -19,6 +19,11 @@ export default async function installDevDeps(
     'eslint-config-prettier',
     'eslint-plugin-prettier',
     'eslint-plugin-react',
+    'eslint-plugin-react-hooks',
+    '@babel/core',
+    '@babel/plugin-transform-react-jsx',
+    '@babel/preset-env',
+    'cross-env',
   ];
 
   if (config.ts) {
@@ -46,7 +51,7 @@ export default async function installDevDeps(
   }
 
   if (config.bundler && config.bundler === 'rollup') {
-    const rollupDeps = ['rollup'];
+    const rollupDeps = ['rollup', '@rollup/plugin-babel'];
     deps.push(...rollupDeps);
 
     if (config.ts) {
@@ -55,7 +60,15 @@ export default async function installDevDeps(
   }
 
   if (config.testRunner && config.testRunner === 'jest') {
-    deps.push('jest', '@types/jest', 'eslint-plugin-jest', 'cross-env');
+    const jestDeps = [
+      'jest',
+      '@types/jest',
+      'eslint-plugin-jest',
+      '@testing-library/jest-dom',
+      '@testing-library/react',
+      '@testing-library/user-event',
+    ];
+    deps.push(...jestDeps);
   }
 
   await subProcess(cmd, deps, destPath);

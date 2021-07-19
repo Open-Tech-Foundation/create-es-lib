@@ -1,0 +1,11 @@
+{
+  "presets": [["@babel/preset-env", { "bugfixes": true }]],
+  "plugins": [
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "runtime": "automatic"
+      }
+    ]
+  ]
+}

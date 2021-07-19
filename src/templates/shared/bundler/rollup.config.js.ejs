@@ -1,6 +1,8 @@
 <% if (ts) { -%>
 import typescript from '@rollup/plugin-typescript'; 
-<% } -%>
+<% } else { %>
+import { babel } from '@rollup/plugin-babel';
+<% } -%> 
 
 export default {
   input: '<%= ts ? 'src/index.ts' : 'src/index.js' %>',
@@ -11,6 +13,8 @@ export default {
   plugins: [
     <% if (ts) { %>
       typescript({ tsconfig: './tsconfig.json' })
+    <% } else { %>
+      babel({ babelHelpers: 'bundled' })
     <% } %>
   ],
   external: [],

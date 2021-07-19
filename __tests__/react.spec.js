@@ -54,12 +54,23 @@ describe('Create React Lib', () => {
       await createReactLib(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(['my-react-lib/**'], {
+      const files = fg.sync(['my-react-lib/**', '!**/node_modules/**'], {
         dot: true,
         cwd: tempDir,
       });
-      expect(files.length).toBe(7);
-      expect(existsSync(path.join(myLibPath, 'src', 'index.jsx'))).toBeTruthy();
+      expect(files.length).toBe(13);
+      expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
+      expect(
+        existsSync(path.join(myLibPath, 'src', 'MyReactLib.js'))
+      ).toBeTruthy();
+      expect(
+        existsSync(path.join(myLibPath, 'babel.config.json'))
+      ).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'package.json'))).toBeTruthy();
+      expect(
+        existsSync(path.join(myLibPath, 'package-lock.json'))
+      ).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
     },
     1000 * 60 * 10
   );
