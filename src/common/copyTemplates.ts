@@ -33,9 +33,7 @@ export default async function copyTemplates(
     let data;
 
     if (fileExt === '.ejs') {
-      data = compile(buffer, {
-        ...config,
-      });
+      data = compile(buffer, { ...config });
       destFilePath = destFilePath.replace(fileExt, '');
     } else {
       data = buffer;
@@ -63,7 +61,7 @@ export default async function copyTemplates(
     const buffer = await readFile(
       Path.join(templatePath, '..', 'shared', 'bundler', 'rollup.config.js.ejs')
     );
-    let data = compile(buffer, config);
+    let data = compile(buffer, { ...config });
     const destFilePath = Path.join(destPath, 'rollup.config.js');
     data = prettify(data.toString(), destFilePath);
     await writeFile(destFilePath, data);
