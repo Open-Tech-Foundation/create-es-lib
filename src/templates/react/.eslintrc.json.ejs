@@ -11,6 +11,7 @@
     <% if (testRunner === 'jest') { -%>
     "plugin:jest/recommended",
     <% } -%>
+    "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
   <% if (ts) { -%>
@@ -18,12 +19,15 @@
   <% } -%>
   "parserOptions": {
     "ecmaVersion": 12,
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   <% if (ts) { -%>
   "plugins": ["@typescript-eslint", "prettier"],
   <% } else { -%>
-  "plugins": ["prettier"],
+  "plugins": ["react", "prettier"],
   <% } -%>
   "rules": {
     "prettier/prettier": "error"
