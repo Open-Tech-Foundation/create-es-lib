@@ -7,13 +7,13 @@ import compile from '../utils/compile';
 import prettify from '../utils/prettify';
 import { mkdir, readFile, writeFile } from '../utils/fs';
 
-export default async function copyTemplates(
-  templatePath: string,
-  destPath: string,
-  config: IConfig,
-  ignore: string[]
-): Promise<void> {
-  const filePaths = await fg([`${normalizePath(templatePath)}/**`, ...ignore], {
+async function copyFiles(
+  from: string,
+  to: string,
+  ignore: string[],
+  config: IConfig
+) {
+  const filePaths = await fg([`${normalizePath(from)}/**`, ...ignore], {
     dot: true,
   });
 
@@ -26,10 +26,7 @@ export default async function copyTemplates(
 
     const buffer = await readFile(templateFile);
     const fileExt = Path.extname(templateFile);
-    let destFilePath = Path.join(
-      destPath,
-      templateFile.replace(templatePath, '')
-    );
+    let destFilePath = Path.join(to, templateFile.replace(from, ''));
     let data;
 
     if (fileExt === '.ejs') {
@@ -47,6 +44,17 @@ export default async function copyTemplates(
     await mkdir(Path.dirname(destFilePath), { recursive: true });
     await writeFile(destFilePath, data);
   }
+}
+
+async function copyTemplates(
+  templatePath: string,
+  destPath: string,
+  config: IConfig,
+  ignore: string[]
+): Promise<void> {
+  await copyFiles(templatePath, destPath, ignore, config);
+  const commonFilesPath = Path.join(templatePath, '..', 'common');
+  await copyFiles(commonFilesPath, destPath, [], config);
 
   if (config.lic) {
     const buffer = await readFile(
@@ -67,3 +75,5 @@ export default async function copyTemplates(
     await writeFile(destFilePath, data);
   }
 }
+
+export default copyTemplates;
