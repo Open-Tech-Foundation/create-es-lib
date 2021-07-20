@@ -26,8 +26,8 @@
       },
     "scripts": {
         <% if (bundler && bundler === 'rollup') { %>
+            "start": "cross-env NODE_ENV=development rollup -c -w",
             "build": "rollup -c",
-            "build:w": "rollup -c -w",         
         <% } %>
         <% if (testRunner === 'jest') { %>
             "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
