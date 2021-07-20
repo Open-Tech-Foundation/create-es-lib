@@ -40,7 +40,7 @@
 
 ✔️ Node.js Module
 
-🚧 React (WIP)
+✔️ React
 
 ## Requirements
 
