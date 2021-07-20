@@ -13,12 +13,14 @@ export default {
   plugins: [
     <% if (ts) { %>
       typescript({ tsconfig: './tsconfig.json' })
-    <% } else { %>
+    <% } -%>
+    <% if (!ts && libType === 'react') { %>  
       babel({ babelHelpers: 'bundled' })
     <% } -%>
   ],
   <% if (libType === 'react') { %>
     external: ['react/jsx-runtime'],
-  <% } -%>
-  external: [],
+  <% } else { %>
+    external: [],
+   <% } -%> 
 };

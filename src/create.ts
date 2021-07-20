@@ -23,6 +23,7 @@ async function getLibType() {
         { name: 'Browser', value: 'browser', disabled: true },
         { name: 'Node.js CLI', value: 'node_cli', disabled: true },
         { name: 'Node.js Module', value: 'node_mod' },
+        { name: 'React', value: 'react' },
       ],
     },
   ]);
