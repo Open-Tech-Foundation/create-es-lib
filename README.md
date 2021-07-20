@@ -75,4 +75,4 @@ Post creating a library, follow the on-screen instructions to get started.
 
 ## License
 
-Copyright (c) [Thanga Ganapathy](https://github.com/Thanga-Ganapathy) (MIT License).
+Copyright (c) [Thanga Ganapathy](https://github.com/Thanga-Ganapathy) ([MIT License](./LICENSE)).
