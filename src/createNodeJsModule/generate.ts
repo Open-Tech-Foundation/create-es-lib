@@ -11,11 +11,11 @@ export default async function generate(
   destPath: string,
   config: IConfig
 ): Promise<void> {
-  await copyTemplates(templatePath, destPath, config, ['!**/jest.ejs']);
+  await copyTemplates(templatePath, destPath, config, ['!**/jest_spec.ejs']);
 
   if (config.testRunner && config.testRunner === 'jest') {
     await mkdir(Path.join(destPath, '__tests__'));
-    const buffer = await readFile(Path.join(templatePath, 'jest.ejs'));
+    const buffer = await readFile(Path.join(templatePath, 'jest_spec.ejs'));
     let data = compile(buffer, { ...config });
     const destFilePath = Path.join(
       destPath,

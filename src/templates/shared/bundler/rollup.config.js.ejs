@@ -15,7 +15,10 @@ export default {
       typescript({ tsconfig: './tsconfig.json' })
     <% } else { %>
       babel({ babelHelpers: 'bundled' })
-    <% } %>
+    <% } -%>
   ],
+  <% if (libType === 'react') { %>
+    external: ['react/jsx-runtime'],
+  <% } -%>
   external: [],
 };
