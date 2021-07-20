@@ -6,10 +6,10 @@ import IConfig from '../IConfig';
 import getCurrentDir from '../utils/getCurrentDir';
 import installDevDeps from './installDevDeps';
 import getPkgNameWithScope from '../utils/getPkgNameWithScope';
-import commitToGit from '../common/commitToGit';
+import commitToGit from '../tools/commitToGit';
 import getGitUrl from '../utils/getGitUrl';
 import getStarted from './getStarted';
-import configTS from '../common/configTS';
+import configTS from '../tools/configTS';
 import generate from './generate';
 
 export default async function createNodeJsModule(

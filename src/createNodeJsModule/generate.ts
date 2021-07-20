@@ -1,6 +1,6 @@
 import Path from 'path';
 
-import copyTemplates from '../common/copyTemplates';
+import copyTemplates from '../tools/copyTemplates';
 import IConfig from '../IConfig';
 import compile from '../utils/compile';
 import { mkdir, readFile, writeFile } from '../utils/fs';
