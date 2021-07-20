@@ -16,10 +16,17 @@ export default async function getStarted(config: IConfig): Promise<void> {
     console.log('\t - Change directory');
     console.log('');
     console.log(
+      chalk.blueBright(`\t$ ${getPkgManagerRunCmd(config.pkgManager)} start`)
+    );
+    console.log(
+      '\t - If you enabled a bundler/compiler, then this will build your lib for development environment with watch mode.'
+    );
+    console.log('');
+    console.log(
       chalk.blueBright(`\t$ ${getPkgManagerRunCmd(config.pkgManager)} build`)
     );
     console.log(
-      '\t - If you enabled a bundler, then this will build your lib.'
+      '\t - If you enabled a bundler/compiler, then this will build your lib for production environment.'
     );
     console.log('');
     console.log(
