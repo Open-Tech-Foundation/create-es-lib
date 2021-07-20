@@ -12,6 +12,7 @@ const myLibPath = path.join(tempDir, 'my-lib');
 let ConsoleError;
 const baseConfig = {
   libName: 'my-lib',
+  libType: 'node_mod',
   ts: false,
   authorFullName: 'tg',
   authorEmail: 'a@a',
@@ -182,6 +183,9 @@ describe('createNodeJsModule', () => {
       expect(files.length).toBe(11);
       expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, '.yarnrc.yml'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'tsconfig.json'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'yarn.lock'))).toBeTruthy();
     },
     1000 * 60 * 10
   );
@@ -208,12 +212,17 @@ describe('createNodeJsModule', () => {
           cwd: tempDir,
         }
       );
-      expect(files.length).toBe(12);
+      expect(files.length).toBe(13);
       expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
       expect(
         existsSync(path.join(myLibPath, '__tests__/myLib.spec.js'))
       ).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, '.yarnrc.yml'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'jest.config.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'tsconfig.json'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'yarn.lock'))).toBeTruthy();
     },
     1000 * 60 * 10
   );
