@@ -8,6 +8,7 @@ import Path from 'path';
 import createNodeJsModule from './createNodeJsModule';
 import IConfig from './IConfig';
 import getCurrentDir from './utils/getCurrentDir';
+import createReactLib from './createReactLib';
 
 const packagePath = Path.join(getCurrentDir(), '..', 'package.json');
 const packageJson = JSON.parse(readFileSync(packagePath, { encoding: 'utf8' }));
@@ -285,6 +286,9 @@ function createLib(config: IConfig) {
       break;
     case 'node_mod':
       createNodeJsModule(config);
+      break;
+    case 'react':
+      createReactLib(config);
       break;
   }
 }
