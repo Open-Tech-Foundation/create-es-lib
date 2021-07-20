@@ -1,4 +1,4 @@
-<% if (lic === 'Apache-2.0') { %>
+<% if (lic === 'Apache-2.0') { -%>
 // Copyright <%= year %> <%= authorFullName %> 
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 <% } -%>
-<% if (lic === 'GPL-3.0-or-later') { %>
+<% if (lic === 'GPL-3.0-or-later') { -%>
 // Copyright (C) <%= year %>  <%= authorFullName %> 
 
 // This program is free software: you can redistribute it and/or modify
@@ -30,8 +30,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <% } -%>
-<% if (ts) { %>
-import * as React from 'react'
+<% if (ts) { -%>
+import * as React from 'react';
 
 interface IProps {
   thing: string;

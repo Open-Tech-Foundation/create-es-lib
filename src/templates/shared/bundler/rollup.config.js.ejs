@@ -1,6 +1,6 @@
 <% if (ts) { -%>
 import typescript from '@rollup/plugin-typescript'; 
-<% } else { %>
+<% } else { -%>
 import { babel } from '@rollup/plugin-babel';
 <% } -%> 
 
@@ -11,16 +11,16 @@ export default {
     format: 'esm',
   }],
   plugins: [
-    <% if (ts) { %>
+    <% if (ts) { -%>
       typescript({ tsconfig: './tsconfig.json' })
     <% } -%>
-    <% if (!ts && libType === 'react') { %>  
+    <% if (!ts && libType === 'react') { -%>  
       babel({ babelHelpers: 'bundled' })
     <% } -%>
   ],
-  <% if (libType === 'react') { %>
+  <% if (libType === 'react') { -%>
     external: ['react/jsx-runtime'],
-  <% } else { %>
+  <% } else { -%>
     external: [],
    <% } -%> 
 };
