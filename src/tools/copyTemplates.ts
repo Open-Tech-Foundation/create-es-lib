@@ -53,7 +53,7 @@ async function copyTemplates(
   ignore: string[]
 ): Promise<void> {
   await copyFiles(templatePath, destPath, ignore, config);
-  const commonFilesPath = Path.join(templatePath, '..', 'common');
+  const commonFilesPath = Path.join(templatePath, '..', 'default');
   await copyFiles(commonFilesPath, destPath, [], config);
 
   if (config.lic) {
