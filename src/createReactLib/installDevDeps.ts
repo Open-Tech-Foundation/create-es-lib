@@ -24,6 +24,9 @@ export default async function installDevDeps(
     '@babel/plugin-transform-react-jsx',
     '@babel/preset-env',
     'cross-env',
+    '@types/react',
+    'react',
+    'react-dom',
   ];
 
   if (config.ts) {

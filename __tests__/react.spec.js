@@ -12,6 +12,7 @@ const myLibPath = path.join(tempDir, 'my-react-lib');
 let ConsoleError;
 const baseConfig = {
   libName: 'my-react-lib',
+  libType: 'react',
   ts: false,
   authorFullName: 'tg',
   authorEmail: 'a@a',
@@ -38,11 +39,11 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  // rmdirSync(myLibPath, { recursive: true });
+  rmdirSync(myLibPath, { recursive: true });
 });
 
 describe('Create React Lib', () => {
-  it.only(
+  it(
     'creates a js lib',
     async () => {
       const config = {
@@ -71,29 +72,48 @@ describe('Create React Lib', () => {
         existsSync(path.join(myLibPath, 'package-lock.json'))
       ).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'jest.config.js'))).toBeTruthy();
     },
     1000 * 60 * 10
   );
 
   it(
-    'creates a ts lib with npm',
+    'creates a ts lib with yarn v2 node-modules',
     async () => {
       const config = {
         ...baseConfig,
+        pkgScope: 'otw',
         ts: true,
-        pkgManager: 'npm',
+        pkgManager: 'yarn-v2-nm',
         bundler: 'rollup',
         testRunner: 'jest',
       };
       await createReactLib(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(['my-react-lib/**', '!my-react-lib/node_modules'], {
-        dot: true,
-        cwd: tempDir,
-      });
-      expect(files.length).toBe(8);
-      expect(existsSync(path.join(myLibPath, 'src', 'index.tsx'))).toBeTruthy();
+      const files = fg.sync(
+        ['my-react-lib/**', '!**/node_modules/**', '!**/.yarn/**'],
+        {
+          dot: true,
+          cwd: tempDir,
+        }
+      );
+      expect(files.length).toBe(15);
+      expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();
+      expect(
+        existsSync(path.join(myLibPath, 'src', 'MyReactLib.tsx'))
+      ).toBeTruthy();
+      expect(
+        existsSync(path.join(myLibPath, 'babel.config.json'))
+      ).toBeTruthy();
+      expect(
+        existsSync(path.join(myLibPath, '__tests__', 'MyReactLib.spec.js'))
+      ).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, '.yarnrc.yml'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'jest.config.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'tsconfig.json'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'yarn.lock'))).toBeTruthy();
     },
     1000 * 60 * 10
   );

@@ -7,17 +7,20 @@ export default async function configTS(
   destPath: string
 ): Promise<void> {
   const cmd = getPkgManBinCmd(config.pkgManager);
-  await subProcess(
-    cmd,
-    [
-      'tsc --init',
-      '--target ES2019',
-      '--module ESNext',
-      '--declaration true',
-      `--outDir "./${config.buildDir}"`,
-      '--rootDir ./src',
-      '--noEmitOnError true',
-    ],
-    destPath
-  );
+  const args = [
+    'tsc --init',
+    '--target ES2019',
+    '--module ESNext',
+    '--declaration true',
+    `--outDir "./${config.buildDir}"`,
+    '--rootDir ./src',
+    '--noEmitOnError true',
+    '--moduleResolution node',
+  ];
+
+  if (config.libType === 'react') {
+    args.push('--jsx react-jsx');
+  }
+
+  await subProcess(cmd, args, destPath);
 }
