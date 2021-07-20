@@ -67,7 +67,7 @@ yarn create @open-tech-world/es-lib my-lib
 
 ❌ Error: Cannot create "/usr/local/bin/create-es-lib" due to insufficient permissions.
 
-You can fix the above error by giving `sudo` access to the command line and after library created, change the library folder owner using `sudo chown -R $USER:$USER my-lib`.
+You can fix the above error by giving `sudo` access to the command line and after a library created, change the library folder owner using `sudo chown -R $USER:$USER my-lib`.
 
 ## Getting Started
 
