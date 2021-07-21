@@ -18,6 +18,7 @@ export default async function installDevDeps(
     'prettier',
     'eslint-config-prettier',
     'eslint-plugin-prettier',
+    'cross-env',
   ];
 
   if (config.ts) {
