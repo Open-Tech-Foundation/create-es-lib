@@ -6,6 +6,7 @@ import fg from 'fast-glob';
 import { createNodeJsModule } from '../lib/createESLib.js';
 import { existsSync, rmdirSync } from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 
 const tempDir = Os.tmpdir();
 const myLibPath = path.join(tempDir, 'my-lib');
@@ -191,6 +192,39 @@ describe('createNodeJsModule', () => {
   );
 
   it(
+    'creates a js lib with rollup & jest',
+    async () => {
+      const config = {
+        ...baseConfig,
+        pkgManager: 'npm',
+        bundler: 'rollup',
+        testRunner: 'jest',
+      };
+      await createNodeJsModule(config);
+      expect(ConsoleError).not.toHaveBeenCalled();
+      expect(existsSync(myLibPath)).toBeTruthy();
+      const files = fg.sync(['my-lib/**', '!my-lib/node_modules'], {
+        dot: true,
+        cwd: tempDir,
+      });
+      expect(files.length).toBe(11);
+      expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
+      expect(
+        existsSync(path.join(myLibPath, '__tests__/myLib.spec.js'))
+      ).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'jest.config.js'))).toBeTruthy();
+      expect(
+        existsSync(path.join(myLibPath, 'package-lock.json'))
+      ).toBeTruthy();
+      expect(() => execSync('npm run build', { cwd: myLibPath })).not.toThrow();
+      expect(() => execSync('npm run test', { cwd: myLibPath })).not.toThrow();
+    },
+    1000 * 60 * 10
+  );
+
+  it(
     'creates a ts lib with rollup & jest',
     async () => {
       const config = {
@@ -223,6 +257,8 @@ describe('createNodeJsModule', () => {
       expect(existsSync(path.join(myLibPath, 'jest.config.js'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'tsconfig.json'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'yarn.lock'))).toBeTruthy();
+      expect(() => execSync('yarn build', { cwd: myLibPath })).not.toThrow();
+      expect(() => execSync('yarn test', { cwd: myLibPath })).not.toThrow();
     },
     1000 * 60 * 10
   );

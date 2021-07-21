@@ -6,6 +6,7 @@ import fg from 'fast-glob';
 import { createReactLib } from '../lib/createESLib.js';
 import { existsSync, rmdirSync } from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 
 const tempDir = Os.tmpdir();
 const myLibPath = path.join(tempDir, 'my-react-lib');
@@ -73,6 +74,8 @@ describe('Create React Lib', () => {
       ).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'jest.config.js'))).toBeTruthy();
+      expect(() => execSync('npm run build', { cwd: myLibPath })).not.toThrow();
+      expect(() => execSync('npm run test', { cwd: myLibPath })).not.toThrow();
     },
     1000 * 60 * 10
   );
@@ -114,6 +117,8 @@ describe('Create React Lib', () => {
       expect(existsSync(path.join(myLibPath, 'jest.config.js'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'tsconfig.json'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'yarn.lock'))).toBeTruthy();
+      expect(() => execSync('yarn build', { cwd: myLibPath })).not.toThrow();
+      expect(() => execSync('yarn test', { cwd: myLibPath })).not.toThrow();
     },
     1000 * 60 * 10
   );
