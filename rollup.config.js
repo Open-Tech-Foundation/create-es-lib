@@ -18,7 +18,7 @@ export default {
     }),
   ],
   external: [
-    'chalk',
+    '@open-tech-world/es-cli-styles',
     'inquirer',
     'path',
     'ejs',

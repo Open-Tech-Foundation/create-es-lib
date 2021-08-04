@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { style } from '@open-tech-world/es-cli-styles';
 import { Command } from 'commander';
 import inquirer from 'inquirer';
 import { isEmail } from '@open-tech-world/es-utils';
@@ -323,7 +323,7 @@ async function run(libName: string | undefined) {
 }
 
 export default function create(): void {
-  const header = chalk`\n{bold.rgb(255, 136, 0) @open-tech-world/create-es-lib}\n`;
+  const header = style('~orange.bold{\n@open-tech-world/create-es-lib}\n');
   console.log(header);
 
   try {
