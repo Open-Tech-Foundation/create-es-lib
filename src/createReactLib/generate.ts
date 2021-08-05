@@ -12,9 +12,9 @@ async function generate(
   config: IConfig
 ): Promise<void> {
   await copyTemplates(templatePath, destPath, config, [
-    '!**/src/MyComponent.ejs',
-    '!**/jest_spec.ejs',
-    '!**/jest.config.js',
+    '!src/MyComponent.ejs',
+    '!jest_spec.ejs',
+    '!jest.config.js',
   ]);
 
   let buffer, data;

@@ -1,7 +1,7 @@
 import process from 'process';
 import Os from 'os';
 import { jest } from '@jest/globals';
-import fg from 'fast-glob';
+import { globSync } from '@open-tech-world/node-glob';
 
 import { createNodeJsModule } from '../lib/createESLib.js';
 import { existsSync, rmdirSync } from 'fs';
@@ -23,6 +23,12 @@ const baseConfig = {
   buildDir: 'lib',
   testRunner: null,
   year: 2021,
+};
+
+const globOptions = {
+  dot: true,
+  cwd: myLibPath,
+  dirs: false,
 };
 
 beforeAll(() => {
@@ -54,10 +60,7 @@ describe('createNodeJsModule', () => {
       await createNodeJsModule(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(['my-lib/**', '!my-lib/node_modules'], {
-        dot: true,
-        cwd: tempDir,
-      });
+      const files = globSync(['**', '!node_modules'], globOptions);
       expect(files.length).toBe(8);
       expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'node_modules'))).toBeTruthy();
@@ -78,13 +81,7 @@ describe('createNodeJsModule', () => {
       await createNodeJsModule(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(
-        ['my-lib/**', '!my-lib/.yarn', '!my-lib/node_modules'],
-        {
-          dot: true,
-          cwd: tempDir,
-        }
-      );
+      const files = globSync(['**', '!.yarn', '!node_modules'], globOptions);
       expect(files.length).toBe(9);
       expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'node_modules'))).toBeTruthy();
@@ -105,10 +102,7 @@ describe('createNodeJsModule', () => {
       await createNodeJsModule(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(['my-lib/**', '!my-lib/.yarn'], {
-        dot: true,
-        cwd: tempDir,
-      });
+      const files = globSync(['**', '!.yarn'], globOptions);
       expect(files.length).toBe(10);
       expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'node_modules'))).toBeFalsy();
@@ -129,10 +123,7 @@ describe('createNodeJsModule', () => {
       await createNodeJsModule(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(['my-lib/**'], {
-        dot: true,
-        cwd: tempDir,
-      });
+      const files = globSync(['**'], globOptions);
       expect(files.length).toBe(8);
       expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'LICENSE'))).toBeTruthy();
@@ -150,10 +141,7 @@ describe('createNodeJsModule', () => {
       await createNodeJsModule(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(['my-lib/**'], {
-        dot: true,
-        cwd: tempDir,
-      });
+      const files = globSync(['**'], globOptions);
       expect(files.length).toBe(8);
       expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'LICENSE'))).toBeTruthy();
@@ -174,13 +162,7 @@ describe('createNodeJsModule', () => {
       await createNodeJsModule(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(
-        ['my-lib/**', '!my-lib/node_modules', '!my-lib/.yarn'],
-        {
-          dot: true,
-          cwd: tempDir,
-        }
-      );
+      const files = globSync(['**', '!node_modules', '!.yarn'], globOptions);
       expect(files.length).toBe(11);
       expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
@@ -203,10 +185,7 @@ describe('createNodeJsModule', () => {
       await createNodeJsModule(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(['my-lib/**', '!my-lib/node_modules'], {
-        dot: true,
-        cwd: tempDir,
-      });
+      const files = globSync(['**', '!node_modules'], globOptions);
       expect(files.length).toBe(11);
       expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
@@ -239,13 +218,7 @@ describe('createNodeJsModule', () => {
       await createNodeJsModule(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(
-        ['my-lib/**', '!my-lib/node_modules', '!my-lib/.yarn'],
-        {
-          dot: true,
-          cwd: tempDir,
-        }
-      );
+      const files = globSync(['**', '!node_modules', '!.yarn'], globOptions);
       expect(files.length).toBe(13);
       expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
@@ -276,10 +249,7 @@ describe('createNodeJsModule', () => {
       await createNodeJsModule(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(['my-lib/**', '!my-lib/.git'], {
-        dot: true,
-        cwd: tempDir,
-      });
+      const files = globSync(['**', '!.git'], globOptions);
       expect(files.length).toBe(7);
       expect(existsSync(path.join(myLibPath, '.git'))).toBeTruthy();
     },

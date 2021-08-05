@@ -12,8 +12,8 @@ export default async function generate(
   config: IConfig
 ): Promise<void> {
   await copyTemplates(templatePath, destPath, config, [
-    '!**/jest_spec.ejs',
-    '!**/jest.config.js',
+    '!jest_spec.ejs',
+    '!jest.config.js',
   ]);
 
   let buffer, data;

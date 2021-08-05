@@ -1,6 +1,5 @@
-import fg from 'fast-glob';
 import Path from 'path';
-import normalizePath from 'normalize-path';
+import { globSync } from '@open-tech-world/node-glob';
 
 import IConfig from '../IConfig';
 import compile from '../utils/compile';
@@ -13,16 +12,19 @@ async function copyFiles(
   ignore: string[],
   config: IConfig
 ) {
-  const filePaths = await fg([`${normalizePath(from)}/**`, ...ignore], {
+  const filePaths = globSync(['**', ...ignore], {
     dot: true,
+    cwd: from,
+    absolute: true,
+    dirs: false,
   });
 
-  for await (const f of filePaths) {
-    let templateFile = f;
+  for await (const templateFile of filePaths) {
+    // const templateFile = Path.join(from, f);
 
-    if (process.platform === 'win32') {
-      templateFile = f.replace(/\//g, '\\');
-    }
+    // if (process.platform === 'win32') {
+    //   templateFile = f.replace(/\//g, '\\');
+    // }
 
     const buffer = await readFile(templateFile);
     const fileExt = Path.extname(templateFile);

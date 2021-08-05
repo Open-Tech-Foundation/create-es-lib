@@ -1,7 +1,7 @@
 import process from 'process';
 import Os from 'os';
 import { jest } from '@jest/globals';
-import fg from 'fast-glob';
+import { globSync } from '@open-tech-world/node-glob';
 
 import { createReactLib } from '../lib/createESLib.js';
 import { existsSync, rmdirSync } from 'fs';
@@ -23,6 +23,12 @@ const baseConfig = {
   buildDir: 'lib',
   testRunner: null,
   year: 2021,
+};
+
+const globOptions = {
+  dot: true,
+  cwd: myLibPath,
+  dirs: false,
 };
 
 beforeAll(() => {
@@ -56,10 +62,7 @@ describe('Create React Lib', () => {
       await createReactLib(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(['my-react-lib/**', '!**/node_modules/**'], {
-        dot: true,
-        cwd: tempDir,
-      });
+      const files = globSync(['**', '!node_modules/**'], globOptions);
       expect(files.length).toBe(13);
       expect(existsSync(path.join(myLibPath, 'src', 'index.js'))).toBeTruthy();
       expect(
@@ -94,12 +97,9 @@ describe('Create React Lib', () => {
       await createReactLib(config);
       expect(ConsoleError).not.toHaveBeenCalled();
       expect(existsSync(myLibPath)).toBeTruthy();
-      const files = fg.sync(
-        ['my-react-lib/**', '!**/node_modules/**', '!**/.yarn/**'],
-        {
-          dot: true,
-          cwd: tempDir,
-        }
+      const files = globSync(
+        ['**', '!node_modules/**', '!.yarn/**'],
+        globOptions
       );
       expect(files.length).toBe(15);
       expect(existsSync(path.join(myLibPath, 'src', 'index.ts'))).toBeTruthy();

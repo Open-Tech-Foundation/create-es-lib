@@ -47,11 +47,10 @@
   "dependencies": {
     "@open-tech-world/es-cli-styles": "^0.1.2",
     "@open-tech-world/es-utils": "^0.6.0",
+    "@open-tech-world/node-glob": "^0.3.0",
     "commander": "^8.1.0",
     "ejs": "^3.1.6",
-    "fast-glob": "^3.2.7",
     "inquirer": "^8.1.2",
-    "normalize-path": "^3.0.0",
     "ora": "^5.4.1",
     "prettier": "^2.3.2"
   },
