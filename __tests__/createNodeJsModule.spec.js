@@ -193,7 +193,7 @@ describe('createNodeJsModule', () => {
         existsSync(path.join(myLibPath, '__tests__/myLib.spec.js'))
       ).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
-      expect(existsSync(path.join(myLibPath, 'jest.config.cjs'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'jest.config.js'))).toBeTruthy();
       expect(
         existsSync(path.join(myLibPath, 'package-lock.json'))
       ).toBeTruthy();
@@ -227,7 +227,7 @@ describe('createNodeJsModule', () => {
       ).toBeTruthy();
       expect(existsSync(path.join(myLibPath, '.yarnrc.yml'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'rollup.config.js'))).toBeTruthy();
-      expect(existsSync(path.join(myLibPath, 'jest.config.cjs'))).toBeTruthy();
+      expect(existsSync(path.join(myLibPath, 'jest.config.js'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'tsconfig.json'))).toBeTruthy();
       expect(existsSync(path.join(myLibPath, 'yarn.lock'))).toBeTruthy();
       expect(() => execSync('yarn build', { cwd: myLibPath })).not.toThrow();

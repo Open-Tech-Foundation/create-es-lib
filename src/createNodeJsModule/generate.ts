@@ -23,7 +23,7 @@ export default async function generate(
     buffer = await readFile(Path.join(templatePath, 'jest.config.js'));
     data = compile(buffer, { ...config });
     data = prettify(data.toString(), Path.join(destPath, 'jest.config.js'));
-    await writeFile(Path.join(destPath, 'jest.config.cjs'), data);
+    await writeFile(Path.join(destPath, 'jest.config.js'), data);
 
     // Add jest spec file
     await mkdir(Path.join(destPath, '__tests__'));
