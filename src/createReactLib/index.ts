@@ -1,5 +1,5 @@
 import Path from 'path';
-import ora from 'ora';
+import { cliProgress } from '@open-tech-world/node-cli-progress';
 import { camelCase, pascalCase } from '@open-tech-world/es-utils';
 
 import IConfig from '../IConfig';
@@ -22,45 +22,49 @@ async function createReactLib(config: IConfig): Promise<void> {
   };
   const templatePath = Path.join(getCurrentDir(), 'templates', 'react');
   const destPath = Path.join(process.cwd(), config.libName);
-  const copySpinner = ora('Creating lib files from templates').start();
+  const copyTask = new cliProgress();
+  copyTask.start('Creating lib files from templates');
 
   try {
     await generate(templatePath, destPath, config);
-    copySpinner.succeed('Created lib files from templates');
+    copyTask.done('Created lib files from templates');
   } catch (error) {
-    copySpinner.fail('Error in creating files from templates');
+    copyTask.fail('Error in creating files from templates');
     throw error;
   }
 
   if (config.pkgManager) {
-    const depsSpinner = ora('Installing dev dependencies').start();
+    const depsTask = new cliProgress();
+    depsTask.start('Installing dev dependencies');
     try {
       await installDevDeps(destPath, config);
-      depsSpinner.succeed(`Dev dependencies installed`);
+      depsTask.done(`Dev dependencies installed`);
     } catch (error) {
-      depsSpinner.fail('Failed to install dev dependencies');
+      depsTask.fail('Failed to install dev dependencies');
       throw error;
     }
   }
 
   if (config.pkgManager && config.ts) {
-    const depsSpinner = ora('Initializing typescript configuration').start();
+    const tsTask = new cliProgress();
+    tsTask.start('Initializing typescript configuration');
     try {
       await configTS(config, destPath);
-      depsSpinner.succeed(`Initialized typescript configuration`);
+      tsTask.done(`Initialized typescript configuration`);
     } catch (error) {
-      depsSpinner.fail('Failed initialize typescript configuration');
+      tsTask.fail('Failed initialize typescript configuration');
       throw error;
     }
   }
 
   if (config.gitProvider) {
-    const gitSpinner = ora('Commiting to git').start();
+    const gitTask = new cliProgress();
+    gitTask.start('Commiting to git');
     try {
       await commitToGit(config, destPath);
-      gitSpinner.succeed(`Files commited to git`);
+      gitTask.done(`Files commited to git`);
     } catch (error) {
-      gitSpinner.fail('Git commit failed');
+      gitTask.fail('Git commit failed');
       throw error;
     }
   }

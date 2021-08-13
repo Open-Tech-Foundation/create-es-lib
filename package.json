@@ -4,10 +4,9 @@
   "description": "Node.js CLI tool for creating modern ECMAScript libraries.",
   "type": "module",
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-    "build": "rollup -c",
     "start": "rollup -c -w",
-    "prepare": "yarn build"
+    "build": "rollup -c",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
@@ -45,32 +44,31 @@
   },
   "homepage": "https://github.com/open-tech-world/create-node-lib#readme",
   "dependencies": {
-    "@open-tech-world/es-cli-styles": "^0.1.2",
-    "@open-tech-world/es-utils": "^0.6.0",
-    "@open-tech-world/node-glob": "^0.3.0",
+    "@open-tech-world/es-cli-styles": "^0.3.0",
+    "@open-tech-world/es-utils": "^0.8.0",
+    "@open-tech-world/node-cli-progress": "^0.2.0",
+    "@open-tech-world/node-glob": "^0.4.0",
     "commander": "^8.1.0",
     "ejs": "^3.1.6",
     "inquirer": "^8.1.2",
-    "ora": "^5.4.1",
     "prettier": "^2.3.2"
   },
   "devDependencies": {
-    "@open-tech-world/rollup-plugin-clean": "^0.11.0",
-    "@rollup/plugin-typescript": "^8.2.3",
+    "@open-tech-world/rollup-plugin-clean": "^0.13.0",
+    "@rollup/plugin-typescript": "^8.2.5",
     "@types/ejs": "^3.0.7",
     "@types/inquirer": "^7.3.3",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.1",
     "@types/normalize-path": "^3.0.0",
-    "@types/ora": "^3.2.0",
     "@types/prettier": "^2.3.2",
-    "@typescript-eslint/eslint-plugin": "^4.29.0",
-    "@typescript-eslint/parser": "^4.29.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.6",
-    "rollup": "^2.55.1",
+    "rollup": "^2.56.2",
     "rollup-plugin-copy": "^3.4.0",
     "typescript": "^4.3.5"
   },
