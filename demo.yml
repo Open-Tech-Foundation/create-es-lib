@@ -1,0 +1,289 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: 
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 132
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 43
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 100
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Demo
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 14
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 10
+    content: "$ npx @open-tech-world/create-es-lib@latest"
+  - delay: 100
+    content: "\r\n"
+  - delay: 100
+    content: "npx: installed 85 in 14.924s\r\n"
+  - delay: 500
+    content: "\e[1;38;2m\e[38;2;255;133;27m\r\n@open-tech-world/create-es-lib\e[39;2;m\e[39;2;m\r\n\r\n"
+  - delay: 500
+    content: "\e[32m?\e[39m \e[1mEnter library name\e[22m\e[0m \e[0m\e[2m() \e[22m\e[24D\e[24C"
+  - delay: 500
+    content: "\e[2K\e[G\e[32m?\e[39m \e[1mEnter library name\e[22m\e[0m \e[0m\e[2m() \e[22mmy-component\e[36D\e[36C"
+  - delay: 500
+    content: "\e[2K\e[G\e[32m?\e[39m \e[1mEnter library name\e[22m\e[0m \e[0m\e[36mmy-component\e[39m\e[33D\e[33C\r\n\e[?25l\e[32m?\e[39m \e[1mSelect a library type\e[22m\e[0m \e[0m\e[2m(Use arrow keys)\e[22m\r\n  - Browser (Disabled)\r\n  - Node.js CLI (Disabled)\r\n\e[36m❯ Node.js Module\e[39m \r\n  React \e[8D\e[8C"
+  - delay: 1000
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mSelect a library type\e[22m\e[0m \e[0m\r\n  - Browser (Disabled)\r\n  - Node.js CLI (Disabled)\r\n  Node.js Module \r\n\e[36m❯ React\e[39m \e[8D\e[8C"
+  - delay: 500
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mSelect a library type\e[22m\e[0m \e[0m\e[36mReact\e[39m\e[29D\e[29C\r\n\e[?25h\e[32m?\e[39m \e[1mDo you need TypeScript support\e[22m\e[0m \e[0m\e[2m(Y/n) \e[22m\e[39D\e[39C"
+  - delay: 500
+    content: "\e[2K\e[G\e[32m?\e[39m \e[1mDo you need TypeScript support\e[22m\e[0m \e[0m\e[36mYes\e[39m\e[36D\e[36C\r\n\e[?25l\e[32m?\e[39m \e[1mSelect a package manager\e[22m\e[0m \e[0m\e[2m(Use arrow keys)\e[22m\r\n  None \r\n\e[36m❯ Npm\e[39m \r\n  - pnpm (Disabled)\r\n  Yarn - Berry (Node Modules) \r\n  Yarn - Berry (PnP) \e[21D\e[21C"
+  - delay: 1000
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mSelect a package manager\e[22m\e[0m \e[0m\e[36mNpm\e[39m\e[30D\e[30C\r\n\e[?25h\e[32m?\e[39m \e[1mEnter package scope (For scoped packages only)\e[22m\e[0m \e[0m\e[2m() \e[22m\e[52D\e[52C"
+  - delay: 500
+    content: "\e[2K\e[G\e[32m?\e[39m \e[1mEnter package scope (For scoped packages only)\e[22m\e[0m \e[0m\e[49D\e[49C\r\n\e[32m?\e[39m \e[1mEnter author fullname\e[22m\e[0m \e[0m\e[2m() \e[22m\e[27D\e[27C"
+  - delay: 500
+    content: "\e[2K\e[G\e[32m?\e[39m \e[1mEnter author fullname\e[22m\e[0m \e[0m\e[2m() \e[22mtg\e[29D\e[29C"
+  - delay: 500
+    content: "\e[2K\e[G\e[32m?\e[39m \e[1mEnter author fullname\e[22m\e[0m \e[0m\e[36mtg\e[39m\e[26D\e[26C\r\n\e[32m?\e[39m \e[1mEnter author email\e[22m\e[0m \e[0m\e[2m() \e[22m\e[24D\e[24C"
+  - delay: 500
+    content: "\e[2K\e[G\e[32m?\e[39m \e[1mEnter author email\e[22m\e[0m \e[0m\e[2m() \e[22mtg@example.com\e[38D\e[38C"
+  - delay: 500
+    content: "\e[2K\e[G\e[32m?\e[39m \e[1mEnter author email\e[22m\e[0m \e[0m\e[36mtg@example.com\e[39m\e[35D\e[35C\r\n\e[?25l\e[32m?\e[39m \e[1mChoose a license\e[22m\e[0m \e[0m\e[2m(Use arrow keys)\e[22m\r\n\e[36m❯ None\e[39m \r\n  Apache License 2.0 \r\n  BSD 3-Clause \"New\" or \"Revised\" License \r\n  GNU General Public License v3.0 or later \r\n  MIT License \e[14D\e[14C"
+  - delay: 1000
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mChoose a license\e[22m\e[0m \e[0m\r\n  None \r\n  Apache License 2.0 \r\n  BSD 3-Clause \"New\" or \"Revised\" License \r\n  GNU General Public License v3.0 or later \r\n\e[36m❯ MIT License\e[39m \e[14D\e[14C"
+  - delay: 500
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mChoose a license\e[22m\e[0m \e[0m\e[36mMIT License\e[39m\e[30D\e[30C\r\n\e[?25h\e[?25l\e[32m?\e[39m \e[1mSelect a module bundler\e[22m\e[0m \e[0m\e[2m(Use arrow keys)\e[22m\r\n\e[36m❯ None\e[39m \r\n  Rollup \r\n  - Webpack (Disabled)\e[22D\e[22C"
+  - delay: 1000
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mSelect a module bundler\e[22m\e[0m \e[0m\r\n  None \r\n\e[36m❯ Rollup\e[39m \r\n  - Webpack (Disabled)\e[22D\e[22C"
+  - delay: 500
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mSelect a module bundler\e[22m\e[0m \e[0m\e[36mRollup\e[39m\e[32D\e[32C\r\n\e[?25h\e[32m?\e[39m \e[1mEnter build dir (lib | build | dist)\e[22m\e[0m \e[0m\e[2m(lib) \e[22m\e[45D\e[45C"
+  - delay: 500
+    content: "\e[2K\e[G\e[32m?\e[39m \e[1mEnter build dir (lib | build | dist)\e[22m\e[0m \e[0m\e[36mlib\e[39m\e[42D\e[42C\r\n\e[?25l\e[32m?\e[39m \e[1mSelect a test runner/framework\e[22m\e[0m \e[0m\e[2m(Use arrow keys)\e[22m\r\n\e[36m❯ None\e[39m \r\n  - AVA (Disabled)\r\n  - Jasmine (Disabled)\r\n  Jest \r\n  - Karma (Disabled)\r\n  - Mocha (Disabled)\r\n  - QUnit (Disabled)\r\n\e[2m(Move up and down to reveal more choices)\e[22m\e[41D\e[41C"
+  - delay: 500
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mSelect a test runner/framework\e[22m\e[0m \e[0m\r\n  None \r\n  - AVA (Disabled)\r\n  - Jasmine (Disabled)\r\n\e[36m❯ Jest\e[39m \r\n  - Karma (Disabled)\r\n  - Mocha (Disabled)\r\n  - QUnit (Disabled)\r\n\e[2m(Move up and down to reveal more choices)\e[22m\e[41D\e[41C"
+  - delay: 500
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mSelect a test runner/framework\e[22m\e[0m \e[0m\e[36mJest\e[39m\e[37D\e[37C\r\n\e[?25h\e[?25l\e[32m?\e[39m \e[1mSelect a git hosting provider\e[22m\e[0m \e[0m\e[2m(Use arrow keys)\e[22m\r\n\e[36m❯ None\e[39m \r\n  - Bitbucket (Disabled)\r\n  GitHub \r\n  - GitLab (Disabled)\e[21D\e[21C"
+  - delay: 500
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mSelect a git hosting provider\e[22m\e[0m \e[0m\r\n  None \r\n  - Bitbucket (Disabled)\r\n\e[36m❯ GitHub\e[39m \r\n  - GitLab (Disabled)\e[21D\e[21C"
+  - delay: 500
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mSelect a git hosting provider\e[22m\e[0m \e[0m\e[36mGitHub\e[39m\e[38D\e[38C\r\n\e[?25h\e[32m?\e[39m \e[1mEnter github username\e[22m\e[0m \e[0m\e[2m() \e[22m\e[27D\e[27C"
+  - delay: 271
+    content: "\e[2K\e[G\e[32m?\e[39m \e[1mEnter github username\e[22m\e[0m \e[0m\e[2m() \e[22mthanga-ganapathy\e[43D\e[43C"
+  - delay: 500
+    content: "\e[2K\e[G\e[32m?\e[39m \e[1mEnter github username\e[22m\e[0m \e[0m\e[36mthanga-ganapathy\e[39m\e[40D\e[40C\r\n\e[32m?\e[39m \e[1mEnter initial commit message\e[22m\e[0m \e[0m\e[2m(Initial commit) \e[22m\e[48D\e[48C"
+  - delay: 500
+    content: "\e[2K\e[G\e[32m?\e[39m \e[1mEnter initial commit message\e[22m\e[0m \e[0m\e[36mInitial commit\e[39m\e[45D\e[45C\r\n"
+  - delay: 149
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠋\e[39;2;m\e[39;2;m Creating lib files from templates "
+  - delay: 89
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m✔️\e[39;2;m\e[39;2;m  Created lib files from templates \r\n"
+  - delay: 101
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠋\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 99
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠙\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠹\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠸\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠼\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠴\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠦\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠧\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠇\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 101
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠏\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 99
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠋\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠙\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠹\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 101
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠸\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 99
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠼\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠴\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠦\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 101
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠧\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 99
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠇\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠏\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠋\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠙\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠹\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠸\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠼\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠴\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 101
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠦\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 99
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠧\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠇\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠏\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 101
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠋\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠙\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠹\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠸\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 101
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠼\e[39;2;m\e[39;2;m Installing dev dependencies "
+  - delay: 35
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m✔️\e[39;2;m\e[39;2;m  Dev dependencies installed \r\n"
+  - delay: 100
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m⠋\e[39;2;m\e[39;2;m Initializing typescript configuration "
+  - delay: 76
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m✔️\e[39;2;m\e[39;2;m  Initialized typescript configuration \r\n"
+  - delay: 28
+    content: "\e[2K\e[1G\e[1;38;2m\e[38;2;46;204;64m✔️\e[39;2;m\e[39;2;m  Files commited to git \r\n\U0001F4E6  Done!\r\n\r\nYour new React library \e[1;38;2m\e[38;2;46;204;64mmy-component\e[39;2;m\e[39;2;m has been created.\r\n\r\nRun the following commands to get started \U0001F680\r\n\r\n\t$ \e[1;38;2m\e[38;2;127;219;255mcd my-component\e[39;2;m\e[39;2;m\r\n\t \e[2;38;2m\e[38;2;170;170;170m- Change directory\e[39;2;m\e[39;2;m\r\n\r\n\t$ \e[1;38;2m\e[38;2;127;219;255mnpm run start\e[39;2;m\e[39;2;m\r\n\t \e[2;38;2m\e[38;2;170;170;170m- If you enabled a bundler/compiler, then this will build your lib for development environment with watch mode.\e[39;2;m\e[39;2;m\r\n\r\n\t$ \e[1;38;2m\e[38;2;127;219;255mnpm run build\e[39;2;m\e[39;2;m\r\n\t \e[2;38;2m\e[38;2;170;170;170m- If you enabled a bundler/compiler, then this will build your lib for production environment.\e[39;2;m\e[39;2;m\r\n\r\n\t$ \e[1;38;2m\e[38;2;127;219;255mnpm run test\e[39;2;m\e[39;2;m\r\n\t \e[2;38;2m\e[38;2;170;170;170m- If you enabled a test runner, then this will run your tests.\e[39;2;m\e[39;2;m\r\n\r\n"
+  - delay: 318
+    content: "\e[?25h"
+  - delay: 500
+    content: "$ cd my-component"
+  - delay: 590
+    content: "\r\n\e]0;/my-component\a\e]7;file://g-System-Product-Name/my-component\a\e]0;my-component\a\e[01;32m/my-component\e[00m$ "
+  - delay: 500
+    content: 'npm run build'
+  - delay: 500
+    content: "\r\n"
+  - delay: 180
+    content: "\r\n\e[0m\r\n> my-component@0.1.0 build /my-component\r\n> rollup -c\r\n\r\n"
+  - delay: 255
+    content: "\e[36m\r\n\e[1msrc/index.ts\e[22m → \e[1m./lib\e[22m...\e[39m\r\n"
+  - delay: 1723
+    content: "\e[32mcreated \e[1m./lib\e[22m in \e[1m1.7s\e[22m\e[39m\r\n"
+  - delay: 19
+    content: "\e]0;/my-component\a\e]7;file://g-System-Product-Name/my-component\a\e]0;my-component\a\e[01;32m/my-component\e[00m$ "
+  - delay: 500
+    content: 'npm run test'
+  - delay: 320
+    content: "\r\n"
+  - delay: 164
+    content: "\r\n\e[0m\r\n> my-component@0.1.0 test /my-component\r\n> cross-env NODE_OPTIONS=--experimental-vm-modules jest\r\n\r\n"
+  - delay: 378
+    content: "(node:29362) ExperimentalWarning: VM Modules is an experimental feature. This feature could change at any time\r\n"
+  - delay: 104
+    content: "\e[1m\e[2mDetermining test suites to run...\e[22m\e[22m"
+  - delay: 21
+    content: "\e[999D\e[K\r\n"
+  - delay: 5
+    content: "\r\e[K\r\e[1A\r\n\e[0m\e[7m\e[33m\e[1m RUNS \e[22m\e[39m\e[27m\e[0m \e[2m__tests__/\e[22m\e[1mMyComponent.spec.js\e[22m\r\n"
+  - delay: 423
+    content: "\r\e[K\r\e[1A\r\e[K\r\e[1A\r\n\e[0m\e[7m\e[33m\e[1m RUNS \e[22m\e[39m\e[27m\e[0m \e[2m__tests__/\e[22m\e[1mMyComponent.spec.js\e[22m\r\n"
+  - delay: 517
+    content: "\r\e[K\r\e[1A\r\e[K\r\e[1A\r\n\e[0m\e[7m\e[33m\e[1m RUNS \e[22m\e[39m\e[27m\e[0m \e[2m__tests__/\e[22m\e[1mMyComponent.spec.js\e[22m\r\n\r\e[K\r\e[1A\r\e[K\r\e[1A\e[0m\e[7m\e[1m\e[32m PASS \e[39m\e[22m\e[27m\e[0m \e]8;;file:///my-component/__tests__/MyComponent.spec.js\a\e[2m__tests__/\e[22m\e[1mMyComponent.spec.js\e[22m\e]8;;\a\r\n\r\n\e[0m\e[7m\e[33m\e[1m RUNS \e[22m\e[39m\e[27m\e[0m \e[2m__tests__/\e[22m\e[1mMyComponent.spec.js\e[22m\r\n\r\e[K\r\e[1A\r\e[K\r\e[1A  MyComponent\r\n\r\n\e[0m\e[7m\e[33m\e[1m RUNS \e[22m\e[39m\e[27m\e[0m \e[2m__tests__/\e[22m\e[1mMyComponent.spec.js\e[22m\r\n\r\e[K\r\e[1A\r\e[K\r\e[1A    \e[32m✓\e[39m \e[2mrenders a div with text (17 ms)\e[22m\r\n\r\n\e[0m\e[7m\e[33m\e[1m RUNS \e[22m\e[39m\e[27m\e[0m \e[2m__tests__/\e[22m\e[1mMyComponent.spec.js\e[22m\r\n\r\e[K\r\e[1A\r\e[K\r\e[1A\r\n\r\n\e[0m\e[7m\e[33m\e[1m RUNS \e[22m\e[39m\e[27m\e[0m \e[2m__tests__/\e[22m\e[1mMyComponent.spec.js\e[22m\r\n\r\e[K\r\e[1A\r\e[K\r\e[1A\r\n\e[0m\e[7m\e[33m\e[1m RUNS \e[22m\e[39m\e[27m\e[0m \e[2m__tests__/\e[22m\e[1mMyComponent.spec.js\e[22m\r\n\r\e[K\r\e[1A\r\e[K\r\e[1A\e[999D\e[K\e[1mTest Suites: \e[22m\e[1m\e[32m1 passed\e[39m\e[22m, 1 total\r\n\e[1mTests:       \e[22m\e[1m\e[32m1 passed\e[39m\e[22m, 1 total\r\n\e[1mSnapshots:   \e[22m0 total\r\n\e[1mTime:\e[22m        0.955 s\r\n\e[2mRan all test suites\e[22m\e[2m.\e[22m\r\n"
+  - delay: 2000
+    content: "\r\n"
